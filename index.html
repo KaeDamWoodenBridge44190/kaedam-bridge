@@ -135,7 +135,7 @@
             font-weight: 600;
         }
 
-        /* ปุ่มเครื่องมือบน Nav (Theme & Language) */
+        /* Action Buttons on Nav */
         .action-btn {
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -182,7 +182,7 @@
             transform: translateY(0);
         }
 
-        /* Hero Section (Parallax Effect) */
+        /* Hero Section */
         .home-hero {
             background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(22,17,13,0.8) 100%), 
                         url('slide1.jpg') center/cover no-repeat;
@@ -393,7 +393,7 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid rgba(0,0,0,0.05);
             cursor: pointer;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             overflow: hidden;
             transform-style: preserve-3d;
@@ -406,6 +406,13 @@
             background: var(--accent);
             opacity: 0;
             transition: opacity 0.3s ease;
+        }
+
+        .portal-card:hover {
+            background: linear-gradient(145deg, #2d5a44 0%, #1e3d2e 100%);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: transparent;
         }
 
         .portal-card:hover::before { opacity: 1; }
@@ -423,18 +430,30 @@
             transition: all 0.35s ease;
         }
 
+        .portal-card:hover .icon-wrapper {
+            transform: scale(1.15) rotate(6deg);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
         .portal-card h3 {
             color: var(--dark);
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
         }
+
+        .portal-card:hover h3 { color: #ffffff; }
 
         .portal-card p {
             font-size: 0.92rem;
             color: var(--text-muted);
             font-weight: 300;
+            transition: color 0.3s ease;
         }
+
+        .portal-card:hover p { color: #e0f0e8; }
 
         /* Subpages Design */
         .history-section {
@@ -498,7 +517,7 @@
             margin-top: 0.3rem;
         }
 
-        /* Gallery Grid */
+        /* 📸 Gallery Grid แบบ 5 คอลัมน์ */
         .gallery-5col-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -548,6 +567,7 @@
             transition: 0.3s ease;
         }
 
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
         .card-body { padding: 1.8rem; }
         .card-body h3 { color: var(--primary); margin-bottom: 0.8rem; font-weight: 600; }
 
@@ -578,17 +598,28 @@
         .info-box li { margin-bottom: 0.8rem; font-weight: 300; }
 
         .rules-box {
-            background: rgba(229, 62, 62, 0.08);
-            border: 1px solid rgba(229, 62, 62, 0.3);
+            background: #fff5f5;
+            border: 1px solid #fed7d7;
             border-radius: var(--radius-md);
             padding: 2.2rem;
             margin-bottom: 2rem;
         }
 
-        .rules-box h3 { color: #e53e3e; margin-bottom: 1rem; font-weight: 600; }
-        .rules-box ul { margin-left: 1.4rem; color: var(--text-main); }
+        body.dark-mode .rules-box {
+            background: rgba(229, 62, 62, 0.15);
+            border-color: rgba(229, 62, 62, 0.4);
+        }
 
-        .map-section { margin-top: 3rem; }
+        .rules-box h3 { color: #c53030; margin-bottom: 1rem; font-weight: 600; }
+        body.dark-mode .rules-box h3 { color: #feb2b2; }
+        .rules-box ul { margin-left: 1.4rem; color: #9b2c2c; }
+        body.dark-mode .rules-box ul { color: #fbb6ce; }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 3rem;
+        }
+
         .map-section h3 {
             color: var(--primary);
             font-size: 1.4rem;
@@ -727,7 +758,7 @@
     </nav>
 
     <div id="lightbox-modal" class="lightbox-modal">
-        <span class="lightbox-close" onclick="closeLightbox()">×</span>
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <img id="lightbox-img" class="lightbox-content" src="" alt="ภาพขยาย">
     </div>
 
@@ -741,12 +772,30 @@
             </p>
 
             <div class="hero-gallery-grid">
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide1.jpg" alt="1"><div class="hero-thumb-overlay">🔍</div></div>
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide2.jpg" alt="2"><div class="hero-thumb-overlay">🔍</div></div>
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide3.jpg" alt="3"><div class="hero-thumb-overlay">🔍</div></div>
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide4.jpg" alt="4"><div class="hero-thumb-overlay">🔍</div></div>
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide5.jpg" alt="5"><div class="hero-thumb-overlay">🔍</div></div>
-                <div class="hero-thumb" onclick="switchPage('gallery')"><img src="slide6.jpg" alt="6"><div class="hero-thumb-overlay">🔍</div></div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide1.jpg" alt="บรรยากาศสะพานไม้แกดำ 1">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide2.jpg" alt="บรรยากาศสะพานไม้แกดำ 2">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide3.jpg" alt="บรรยากาศสะพานไม้แกดำ 3">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide4.jpg" alt="บรรยากาศสะพานไม้แกดำ 4">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide5.jpg" alt="บรรยากาศสะพานไม้แกดำ 5">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
+                <div class="hero-thumb" onclick="switchPage('gallery')" title="ไปยังหน้าภาพบรรยากาศ">
+                    <img src="slide6.jpg" alt="บรรยากาศสะพานไม้แกดำ 6">
+                    <div class="hero-thumb-overlay">🔍</div>
+                </div>
             </div>
 
             <button class="cta-btn" onclick="switchPage('about')" data-th="เริ่มสำรวจข้อมูล" data-en="Explore Now">เริ่มสำรวจข้อมูล</button>
@@ -801,16 +850,16 @@
         <div class="history-section">
             <div class="history-stats-grid reveal">
                 <div class="stat-card">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label" data-th="ปี อายุสะพานไม้แห่งภูมิปัญญา" data-en="Years of Cultural Heritage">ปี อายุสะพานไม้แห่งภูมิปัญญา</div>
+                    <div class="stat-number">100+ ปี</div>
+                    <div class="stat-label" data-th="อายุสะพานไม้แห่งภูมิปัญญา" data-en="Years of Cultural Heritage">อายุสะพานไม้แห่งภูมิปัญญา</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">1,000</div>
-                    <div class="stat-label" data-th="เมตร ความยาวทอดข้ามบึงน้ำ" data-en="Meters Length Across the Lake">เมตร ความยาวทอดข้ามบึงน้ำ</div>
+                    <div class="stat-number">1,000 เมตร</div>
+                    <div class="stat-label" data-th="ความยาวทอดข้ามบึงน้ำ" data-en="Meters Length Across the Lake">ความยาวทอดข้ามบึงน้ำ</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">1,400+</div>
-                    <div class="stat-label" data-th="ไร่ พื้นที่อ่างเก็บน้ำหนองแกดำ" data-en="Rai Area of Kae Dam Reservoir">ไร่ พื้นที่อ่างเก็บน้ำหนองแกดำ</div>
+                    <div class="stat-number">1,400+ ไร่</div>
+                    <div class="stat-label" data-th="พื้นที่อ่างเก็บน้ำหนองแกดำ" data-en="Rai Area of Kae Dam Reservoir">พื้นที่อ่างเก็บน้ำหนองแกดำ</div>
                 </div>
             </div>
 
@@ -820,13 +869,41 @@
                    data-en="Kae Dam Wooden Bridge is located behind Wat Dao Dueng, Kae Dam District, Maha Sarakham. It is considered one of the longest ancient wooden bridges in Isan and Thailand, stretching over 1,000 meters across the Kae Dam Reservoir.">
                    <strong>สะพานไม้แกดำ</strong> ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม ถือเป็นหนึ่งในสะพานไม้โบราณที่ยาวที่สุดในภาคอีสานและประเทศไทย ด้วยระยะทางยาวประมาณ 1,000 เมตร (1 กิโลเมตร) ทอดตัวผ่านอ่างเก็บน้ำหนองแกดำ
                 </p>
+                <p data-th="เดิมทีสะพานแห่งนี้สร้างขึ้นในอดีต (ยาวนานนับร้อยปี) เพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง 'บ้านแกดำ' กับ 'บ้านหัวขัว' (คำว่า 'ขัว' ในภาษาอีสานแปลว่า สะพาน) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่"
+                   data-en="Originally, this bridge was built over a century ago as a transportation route for villagers traveling between 'Ban Kae Dam' and 'Ban Hua Khua' ('Khua' means bridge in Isan dialect). It enabled local commuting, livestock grazing, and visiting Wat Dao Dueng without walking around the massive lake.">
+                   เดิมทีสะพานแห่งนี้สร้างขึ้นในอดีต (ยาวนานนับร้อยปี) เพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง <strong>"บ้านแกดำ"</strong> กับ <strong>"บ้านหัวขัว"</strong> (คำว่า <em>"ขัว"</em> ในภาษาอีสานแปลว่า <em>สะพาน</em>) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่
+                </p>
             </div>
 
             <div class="history-box reveal">
                 <h3 data-th="🌿 ความสำคัญของ 'หนองแกดำ' และระบบนิเวศ" data-en="🌿 Significance of Kae Dam Lake & Ecosystem">🌿 ความสำคัญของ "หนองแกดำ" และระบบนิเวศ</h3>
-                <p data-th="หนองแกดำ เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน มีพืชน้ำอุดมสมบูรณ์ และเป็นที่อยู่ของนกน้ำนานาชนิด"
-                   data-en="Kae Dam Nong is a natural lake covering over 1,400 Rai. It acts as a reservoir and breeding ground for aquatic animals, sustaining local livelihoods for generations. It features rich aquatic flora and shelters diverse waterbirds.">
-                   <strong>หนองแกดำ</strong> เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน มีพืชน้ำอุดมสมบูรณ์ และเป็นที่อยู่ของนกน้ำนานาชนิด
+                <p data-th="หนองแกดำ เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ กระจายอยู่ในพื้นที่ 3 หมู่บ้าน ได้แก่ บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน"
+                   data-en="Kae Dam Nong is a natural lake covering over 1,400 Rai across 3 villages: Ban Kae Dam, Ban Hua Khua, and Ban Pho Si. It acts as a reservoir and breeding ground for aquatic life, sustaining local livelihoods for generations.">
+                   <strong>หนองแกดำ</strong> เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ กระจายอยู่ในพื้นที่ 3 หมู่บ้าน ได้แก่ บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน
+                </p>
+                <p data-th="สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว"
+                   data-en="The surrounding environment is rich in biodiversity, featuring aquatic plants like red lotuses, reeds, and duckweed, as well as sheltering various waterbirds. This makes the wooden bridge a peaceful, charming natural viewpoint.">
+                   สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว
+                </p>
+            </div>
+
+            <div class="history-box reveal">
+                <h3 data-th="🔨 พลังศรัทธาและความสามัคคีในการซ่อมแซม" data-en="🔨 Unity and Faith in Bridge Restoration">🔨 พลังศรัทธาและความสามัคคีในการซ่อมแซม</h3>
+                <p data-th="ในอดีต โครงสร้างของสะพานไม้ต้องเผชิญกับสภาพอากาศ ลม ฝน และระดับน้ำในบึงที่เปลี่ยนแปลงไปตามฤดูกาล ทำให้ไม้ชำรุดผุกร่อนไปตามกาลเวลา แต่ด้วย 'พลังความสามัคคีของชาวบ้าน' ในชุมชนแกดำและพื้นที่ใกล้เคียง จึงได้ร่วมกันนำไม้ที่มีในท้องถิ่น ไม้เก่าจากบ้าน เสาไม้ และไม้ไผ่ มาช่วยกันตัด ตอก และซ่อมแซมต่อเติมสะพานอยู่เป็นระยะเรื่อยมา"
+                   data-en="In the past, the wooden structure weathered severe rain, wind, and seasonal water level changes. However, through the unity of Kae Dam villagers, local wood, recycled house timber, posts, and bamboo were continually gathered to repair the bridge.">
+                   ในอดีต โครงสร้างของสะพานไม้ต้องเผชิญกับสภาพอากาศ ลม ฝน และระดับน้ำในบึงที่เปลี่ยนแปลงไปตามฤดูกาล ทำให้ไม้ชำรุดผุกร่อนไปตามกาลเวลา แต่ด้วย <strong>"พลังความสามัคคีของชาวบ้าน"</strong> ในชุมชนแกดำและพื้นที่ใกล้เคียง จึงได้ร่วมกันนำไม้ที่มีในท้องถิ่น ไม้เก่าจากบ้าน เสาไม้ และไม้ไผ่ มาช่วยกันตัด ตอก และซ่อมแซมต่อเติมสะพานอยู่เป็นระยะเรื่อยมา
+                </p>
+                <p data-th="ด้วยเหตุนี้ สะพานจึงมีความสวยงามแบบดิบๆ ตามภูมิปัญญาชาวบ้านที่ไม่เหมือนใคร ไม้แต่ละชิ้นสะท้อนถึงการร่วมแรงร่วมใจและการอนุรักษ์มรดกของบรรพบุรุษไว้ให้คนรุ่นหลังได้ใช้ประโยชน์"
+                   data-en="As a result, the bridge possesses a unique rustic beauty reflecting local wisdom. Each piece of timber stands as a testament to communal collaboration and preserving ancestral heritage for future generations.">
+                   ด้วยเหตุนี้ สะพานจึงมีความสวยงามแบบดิบๆ ตามภูมิปัญญาชาวบ้านที่ไม่เหมือนใคร ไม้แต่ละชิ้นสะท้อนถึงการร่วมแรงร่วมใจและการอนุรักษ์มรดกของบรรพบุรุษไว้ให้คนรุ่นหลังได้ใช้ประโยชน์
+                </p>
+            </div>
+
+            <div class="history-box reveal">
+                <h3 data-th="🐸 รูปปั้นกบยักษ์ อัตลักษณ์วิถีชีวิตชาวแกดำ" data-en="🐸 Giant Frog Statue: Identity of Kae Dam Life">🐸 รูปปั้นกบยักษ์ อัตลักษณ์วิถีชีวิตชาวแกดำ</h3>
+                <p data-th="บริเวณใกล้กับทางขึ้นสะพานไม้แกดำ นักท่องเที่ยวจะพบกับ 'รูปปั้นกบขนาดใหญ่' ซึ่งเป็นอีกหนึ่งจุดถ่ายภาพยอดนิยม ที่มาของรูปปั้นนี้สะท้อนถึงความอุดมสมบูรณ์ของพื้นที่หนองแกดำในอดีตที่มีกบและลูกอ๊อดอาศัยอยู่เป็นจำนวนมาก เป็นแหล่งอาหารสำคัญทางธรรมชาติของคนในท้องถิ่น และกลายมาเป็นสัญลักษณ์เตือนใจถึงความสมบูรณ์ของธรรมชาติในวิถีชีวิตอีสาน"
+                   data-en="Near the bridge entrance, tourists will find a 'Giant Frog Statue', a popular photo spot. This statue symbolizes the historical abundance of frogs and tadpoles in Kae Dam Lake—a vital natural food source—representing nature's harmony in Isan life.">
+                   บริเวณใกล้กับทางขึ้นสะพานไม้แกดำ นักท่องเที่ยวจะพบกับ <strong>"รูปปั้นกบขนาดใหญ่"</strong> ซึ่งเป็นอีกหนึ่งจุดถ่ายภาพยอดนิยม ที่มาของรูปปั้นนี้สะท้อนถึงความอุดมสมบูรณ์ของพื้นที่หนองแกดำในอดีตที่มีกบและลูกอ๊อดอาศัยอยู่เป็นจำนวนมาก เป็นแหล่งอาหารสำคัญทางธรรมชาติของคนในท้องถิ่น และกลายมาเป็นสัญลักษณ์เตือนใจถึงความสมบูรณ์ของธรรมชาติในวิถีชีวิตอีสาน
                 </p>
             </div>
         </div>
@@ -837,16 +914,21 @@
         <h2 class="section-title reveal" data-th="บรรยากาศสะพานไม้แกดำ" data-en="Atmosphere & Gallery">บรรยากาศสะพานไม้แกดำ</h2>
 
         <div class="gallery-5col-grid">
-            <div class="gallery-card reveal" onclick="openLightbox('slide1.jpg')"><img src="slide1.jpg" alt="1"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide2.jpg')"><img src="slide2.jpg" alt="2"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide3.jpg')"><img src="slide3.jpg" alt="3"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide4.jpg')"><img src="slide4.jpg" alt="4"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide5.jpg')"><img src="slide5.jpg" alt="5"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide6.jpg')"><img src="slide6.jpg" alt="6"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide7.jpg')"><img src="slide7.jpg" alt="7"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide8.jpg')"><img src="slide8.jpg" alt="8"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide9.jpg')"><img src="slide9.jpg" alt="9"></div>
-            <div class="gallery-card reveal" onclick="openLightbox('slide10.jpg')"><img src="slide10.jpg" alt="10"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide1.jpg')"><img src="slide1.jpg" alt="บรรยากาศสะพานไม้แกดำ 1"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide2.jpg')"><img src="slide2.jpg" alt="บรรยากาศสะพานไม้แกดำ 2"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide3.jpg')"><img src="slide3.jpg" alt="บรรยากาศสะพานไม้แกดำ 3"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide4.jpg')"><img src="slide4.jpg" alt="บรรยากาศสะพานไม้แกดำ 4"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide5.jpg')"><img src="slide5.jpg" alt="บรรยากาศสะพานไม้แกดำ 5"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide6.jpg')"><img src="slide6.jpg" alt="บรรยากาศสะพานไม้แกดำ 6"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide7.jpg')"><img src="slide7.jpg" alt="บรรยากาศสะพานไม้แกดำ 7"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide8.jpg')"><img src="slide8.jpg" alt="บรรยากาศสะพานไม้แกดำ 8"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide9.jpg')"><img src="slide9.jpg" alt="บรรยากาศสะพานไม้แกดำ 9"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide10.jpg')"><img src="slide10.jpg" alt="บรรยากาศสะพานไม้แกดำ 10"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide11.jpg')"><img src="slide11.jpg" alt="บรรยากาศสะพานไม้แกดำ 11"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide12.jpg')"><img src="slide12.jpg" alt="บรรยากาศสะพานไม้แกดำ 12"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide13.jpg')"><img src="slide13.jpg" alt="บรรยากาศสะพานไม้แกดำ 13"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide14.jpg')"><img src="slide14.jpg" alt="บรรยากาศสะพานไม้แกดำ 14"></div>
+            <div class="gallery-card reveal" onclick="openLightbox('slide15.jpg')"><img src="slide15.jpg" alt="บรรยากาศสะพานไม้แกดำ 15"></div>
         </div>
     </div>
 
@@ -857,27 +939,27 @@
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="❄️ ฤดูหนาว (พ.ย. - ก.พ.)" data-en="❄️ Winter (Nov - Feb)">❄️ ฤดูหนาว (พ.ย. - ก.พ.)</h3>
-                    <p data-th="อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด"
-                       data-en="Cool weather, morning fog over the water surface, and blooming red lotuses make it ideal for photography.">
-                       อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด
+                    <p data-th="ไฮไลต์: อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด"
+                       data-en="Highlights: Cool weather, morning mist over the water surface, blooming red lotuses; perfect for photography.">
+                       <strong>ไฮไลต์:</strong> อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด
                     </p>
                 </div>
             </div>
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="🌧️ ฤดูฝน (มิ.ย. - ต.ค.)" data-en="🌧️ Rainy Season (Jun - Oct)">🌧️ ฤดูฝน (มิ.ย. - ต.ค.)</h3>
-                    <p data-th="ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์"
-                       data-en="High water level, lush green aquatic plants, and a vibrant fresh atmosphere.">
-                       ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์
+                    <p data-th="ไฮไลต์: ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์"
+                       data-en="Highlights: Full water levels, vibrant green aquatic foliage; offers a refreshing and lively natural feel.">
+                       <strong>ไฮไลต์:</strong> ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์
                     </p>
                 </div>
             </div>
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="☀️ ฤดูร้อน (มี.ค. - พ.ค.)" data-en="☀️ Summer (Mar - May)">☀️ ฤดูร้อน (มี.ค. - พ.ค.)</h3>
-                    <p data-th="ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ"
-                       data-en="Experience evening local life and stunning sunsets reflecting off the water surface.">
-                       ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ
+                    <p data-th="ไฮไลต์: ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ"
+                       data-en="Highlights: Observe evening local daily activities with stunning golden sunsets reflecting across the water.">
+                       <strong>ไฮไลต์:</strong> ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ
                     </p>
                 </div>
             </div>
@@ -892,18 +974,27 @@
             <div class="info-box reveal">
                 <h3 data-th="📍 ข้อมูลการเดินทาง" data-en="📍 Location Info">📍 ข้อมูลการเดินทาง</h3>
                 <ul>
-                    <li data-th="สถานที่ตั้ง: ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)" data-en="Location: Kae Dam Sub-district, Maha Sarakham (Behind Wat Dao Dueng)"><strong>สถานที่ตั้ง:</strong> ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)</li>
+                    <li data-th="สถานที่ตั้ง: ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)" data-en="Location: Kae Dam Sub-district, Kae Dam District, Maha Sarakham (Behind Wat Dao Dueng)"><strong>สถานที่ตั้ง:</strong> ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)</li>
                     <li data-th="ระยะทาง: ห่างจากตัวเมืองมหาสารคามประมาณ 25 กิโลเมตร" data-en="Distance: ~25 km from Maha Sarakham city center"><strong>ระยะทาง:</strong> ห่างจากตัวเมืองมหาสารคามประมาณ 25 กิโลเมตร</li>
                     <li data-th="เวลาเปิด-ปิด: เปิดให้เข้าชมฟรีตลอด 24 ชั่วโมง" data-en="Hours: Open 24/7 (Free Admission)"><strong>เวลาเปิด-ปิด:</strong> เปิดให้เข้าชมฟรีตลอด 24 ชั่วโมง</li>
                 </ul>
             </div>
             <div class="info-box reveal">
-                <h3 data-th="💡 ช่วงเวลาแนะนำ" data-en="💡 Best Visit Times">💡 ช่วงเวลาแนะนำ</h3>
+                <h3 data-th="💡 ช่วงเวลาแนะนำ" data-en="💡 Recommended Visiting Times">💡 ช่วงเวลาแนะนำ</h3>
                 <ul>
-                    <li data-th="ยามเช้า (06.00 – 08.30 น.): สัมผัสอากาศบริสุทธิ์ ชมหมอกยามเช้า" data-en="Morning (06:00 – 08:30): Fresh air and morning mist"><strong>ยามเช้า (06.00 – 08.30 น.):</strong> สัมผัสอากาศบริสุทธิ์ ชมหมอกยามเช้า</li>
-                    <li data-th="ยามเย็น (16.30 – 18.30 น.): ชมพระอาทิตย์ตกดินสุดโรแมนติก" data-en="Evening (16:30 – 18:30): Beautiful sunset views"><strong>ยามเย็น (16.30 – 18.30 น.):</strong> ชมพระอาทิตย์ตกดินสุดโรแมนติก</li>
+                    <li data-th="ยามเช้า (06.00 – 08.30 น.): สัมผัสอากาศบริสุทธิ์ ชมหมอกยามเช้า" data-en="Morning (06:00 – 08:30): Fresh morning air & mist"><strong>ยามเช้า (06.00 – 08.30 น.):</strong> สัมผัสอากาศบริสุทธิ์ ชมหมอกยามเช้า</li>
+                    <li data-th="ยามเย็น (16.30 – 18.30 น.): ชมพระอาทิตย์ตกดินสุดโรแมนติก" data-en="Evening (16:30 – 18:30): Romantic sunset views over the lake"><strong>ยามเย็น (16.30 – 18.30 น.):</strong> ชมพระอาทิตย์ตกดินสุดโรแมนติก</li>
                 </ul>
             </div>
+        </div>
+
+        <div class="rules-box reveal">
+            <h3 data-th="⚠️ ข้อควรปฏิบัติในการเยี่ยมชม" data-en="⚠️ Visitor Guidelines & Safety Rules">⚠️ ข้อควรปฏิบัติในการเยี่ยมชม</h3>
+            <ul>
+                <li data-th="โปรดระมัดระวังขณะเดินบนสะพาน เนื่องจากสะพานเป็นโครงสร้างไม้โบราณ" data-en="Exercise caution while walking; the bridge is an old wooden structure.">โปรดระมัดระวังขณะเดินบนสะพาน เนื่องจากสะพานเป็นโครงสร้างไม้โบราณ</li>
+                <li data-th="ห้ามนำยานพาหนะทุกชนิด (เช่น รถจักรยานยนต์) ขับขี่ขึ้นบนสะพานไม้" data-en="Vehicles of any kind (including motorcycles) are strictly prohibited on the bridge.">ห้ามนำยานพาหนะทุกชนิด (เช่น รถจักรยานยนต์) ขับขี่ขึ้นบนสะพานไม้</li>
+                <li data-th="ช่วยกันรักษาความสะอาด ไม่ทิ้งขยะลงในบึงน้ำหนองแกดำ" data-en="Help keep the environment clean; do not litter into Kae Dam Lake.">ช่วยกันรักษาความสะอาด ไม่ทิ้งขยะลงในบึงน้ำหนองแกดำ</li>
+            </ul>
         </div>
 
         <div class="map-section reveal">
@@ -919,11 +1010,15 @@
         <h2 class="section-title reveal" data-th="คำถามที่พบบ่อย (FAQ)" data-en="Frequently Asked Questions">คำถามที่พบบ่อย (FAQ)</h2>
         <div class="faq-item reveal">
             <h4 data-th="❓ เสียค่าเข้าชมหรือไม่?" data-en="❓ Is there an entry fee?">❓ เสียค่าเข้าชมหรือไม่?</h4>
-            <p data-th="ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น" data-en="Answer: Free admission for all visitors.">ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น</p>
+            <p data-th="ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น" data-en="Answer: Free admission for all visitors without any charges.">ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น</p>
         </div>
         <div class="faq-item reveal">
             <h4 data-th="❓ มีสถานที่จอดรถบริการหรือไม่?" data-en="❓ Is parking available?">❓ มีสถานที่จอดรถบริการหรือไม่?</h4>
-            <p data-th="ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน" data-en="Answer: Parking is available at Wat Dao Dueng and around the bridge entrance.">ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน</p>
+            <p data-th="ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน" data-en="Answer: Parking is conveniently available at Wat Dao Dueng and around the bridge entrance.">ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน</p>
+        </div>
+        <div class="faq-item reveal">
+            <h4 data-th="❓ มีร้านค้าหรือร้านอาหารบริการหรือไม่?" data-en="❓ Are there shops or food stalls nearby?">❓ มีร้านค้าหรือร้านอาหารบริการหรือไม่?</h4>
+            <p data-th="ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่" data-en="Answer: Local community shops near the entrance sell drinks, quick meals, and local snacks.">ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่</p>
         </div>
     </div>
 
