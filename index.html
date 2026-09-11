@@ -70,6 +70,175 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* -----------------------------------------
+           ✨ Welcome Popup Styles & Animations
+        ----------------------------------------- */
+        body.popup-open {
+            overflow: hidden !important;
+        }
+
+        .welcome-popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(34, 27, 22, 0.75);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .welcome-popup-overlay.fade-out {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .welcome-popup-card {
+            background: #fcfaf4;
+            border: 3px solid #b58337;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem 2rem 2rem;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+            position: relative;
+            transform: translateY(0);
+            animation: popupSlideUp 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        body.dark-mode .welcome-popup-card {
+            background: #1e1e1e;
+            border-color: #b58337;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        }
+
+        @keyframes popupSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .welcome-mascot-wrapper {
+            margin-bottom: 1.2rem;
+            animation: mascotFadeIn 0.9s ease-out forwards;
+        }
+
+        @keyframes mascotFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .welcome-mascot-img {
+            max-width: 180px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15));
+        }
+
+        .welcome-title-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-title-sub {
+            font-size: 1.15rem;
+            color: #b58337;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            letter-spacing: 0.5px;
+        }
+
+        .welcome-title-main {
+            font-size: 2.1rem;
+            color: #2d5a44;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 0.2rem;
+        }
+
+        body.dark-mode .welcome-title-main {
+            color: #68bd93;
+        }
+
+        .welcome-title-en {
+            font-size: 0.95rem;
+            color: #666666;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        body.dark-mode .welcome-title-en {
+            color: #a0a0a0;
+        }
+
+        .welcome-enter-btn {
+            background: linear-gradient(135deg, #2d5a44 0%, #1e3d2e 100%);
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.85rem 2.8rem;
+            border: 2px solid #b58337;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(45, 90, 68, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .welcome-enter-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            background: linear-gradient(135deg, #b58337 0%, #8c5812 100%);
+            border-color: #2d5a44;
+            box-shadow: 0 10px 25px rgba(181, 131, 55, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .welcome-popup-card {
+                padding: 2rem 1.2rem 1.5rem;
+            }
+            .welcome-mascot-img {
+                max-width: 140px;
+            }
+            .welcome-title-main {
+                font-size: 1.7rem;
+            }
+            .welcome-title-sub {
+                font-size: 1rem;
+            }
+            .welcome-title-en {
+                font-size: 0.85rem;
+            }
+            .welcome-enter-btn {
+                padding: 0.75rem 2rem;
+                font-size: 1rem;
+            }
+        }
+
         /* Reading Progress Bar */
         #progress-bar {
             position: fixed;
@@ -381,7 +550,7 @@
         /* Portal Cards */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 1.8rem;
         }
 
@@ -687,25 +856,169 @@
             transform: translateY(-4px);
         }
 
-        /* Footer */
+        /* Footer Styles */
         footer {
             background-color: var(--footer-bg);
             color: var(--footer-text);
-            text-align: center;
-            padding: 3rem 1.5rem;
+            padding: 3.5rem 1.5rem 2rem;
             font-size: 0.95rem;
             margin-top: 5rem;
             border-top: 2px solid rgba(212, 118, 70, 0.4);
         }
-        footer p { font-weight: 300; }
-        footer .footer-sub {
-            margin-top: 0.5rem;
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr 1fr;
+            gap: 2.5rem;
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-col h3, .footer-col h4 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .footer-col h3 {
+            font-size: 1.25rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .footer-col p {
+            font-weight: 300;
             color: var(--footer-text-muted);
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-col ul li a {
+            color: var(--footer-text-muted);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ffffff;
+            border-color: rgba(212, 163, 89, 0.5);
+            background: rgba(212, 163, 89, 0.1);
+        }
+
+        /* ตกแต่งการกด/คลิก (Active Focus) สำหรับลิงก์ทั้งหมดใน Footer ให้มีกรอบสีขึ้นมาเน้น */
+        footer a {
+            transition: all 0.2s ease-in-out;
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            outline: none;
+        }
+
+        footer a:hover {
+            color: #ffffff !important;
+            border-color: rgba(212, 163, 89, 0.6);
+            background: rgba(212, 163, 89, 0.15);
+        }
+
+        footer a:active, footer a:focus {
+            border: 2px solid var(--accent) !important;
+            background-color: rgba(181, 131, 55, 0.25) !important;
+            color: #ffffff !important;
+            box-shadow: 0 0 12px rgba(181, 131, 55, 0.8);
+            transform: scale(0.97);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            font-weight: 300;
+            color: var(--footer-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--footer-text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        /* Styles for Structured Reference Lists */
+        .ref-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.2rem 0;
+        }
+        .ref-list li {
+            position: relative;
+            padding-left: 1.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        .ref-list li::before {
+            content: "📌";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 900px) {
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
             .gallery-5col-grid { grid-template-columns: repeat(3, 1fr); }
+            .portal-grid { grid-template-columns: repeat(3, 1fr); }
         }
         @media (max-width: 768px) {
             .home-hero h1 { font-size: 3.2rem; }
@@ -716,14 +1029,31 @@
             nav ul { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
             .history-box { padding: 1.8rem; }
             .gallery-5col-grid { grid-template-columns: repeat(2, 1fr); }
+            .portal-grid { grid-template-columns: repeat(2, 1fr); }
             .home-hero { background-attachment: scroll; }
         }
         @media (max-width: 480px) {
             .gallery-5col-grid { grid-template-columns: repeat(1, 1fr); }
+            .portal-grid { grid-template-columns: repeat(1, 1fr); }
         }
     </style>
 </head>
-<body>
+<body class="popup-open">
+
+    <!-- Welcome Popup -->
+    <div id="welcomePopup" class="welcome-popup-overlay">
+        <div class="welcome-popup-card">
+            <div class="welcome-mascot-wrapper">
+                <img src="welcome-frog.png" alt="มาสคอตเด็กผู้หญิงชุดกบ สะพานไม้แกดำ" class="welcome-mascot-img">
+            </div>
+            <div class="welcome-title-group">
+                <div class="welcome-title-sub" data-th="ยินดีต้อนรับ" data-en="Welcome">ยินดีต้อนรับ</div>
+                <div class="welcome-title-main" data-th="สู่เว็บไซต์สะพานไม้แกดำ" data-en="To Kae Dam Wooden Bridge Website">สู่เว็บไซต์สะพานไม้แกดำ</div>
+                <div class="welcome-title-en">Kae Dam Wooden Bridge</div>
+            </div>
+            <button class="welcome-enter-btn" onclick="closeWelcomePopup()" data-th="เข้าสู่เว็บไซต์" data-en="Enter Website">เข้าสู่เว็บไซต์</button>
+        </div>
+    </div>
 
     <div id="progress-bar"></div>
 
@@ -767,7 +1097,7 @@
             <div class="hero-badge" data-th="📍 อำเภอแกดำ จังหวัดมหาสารคาม" data-en="📍 Kae Dam District, Maha Sarakham">📍 อำเภอแกดำ จังหวัดมหาสารคาม</div>
             <h1 data-th="สะพานไม้แกดำ" data-en="Kae Dam Wooden Bridge">สะพานไม้แกดำ</h1>
             <p data-th="สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส"
-               data-en="A bridge of faith, an ancient wooden bridge over 1,000 meters across Kae Dam Nong. Experience the charm of local life and nature.">
+               data-en="Bond of Faith: An ancient wooden bridge stretching over 1,000 meters across Kae Dam Lake, offering charm, local culture, and nature you must experience.">
                สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส
             </p>
 
@@ -802,12 +1132,7 @@
         </header>
 
         <div class="container">
-            <div class="weather-card reveal">
-                <h4 data-th="🌤️ สภาพอากาศ อ.แกดำ วันนี้" data-en="🌤️ Today's Weather in Kae Dam">🌤️ สภาพอากาศ อ.แกดำ วันนี้</h4>
-                <p id="weather-info">กำลังอัปเดตข้อมูลสภาพอากาศสด...</p>
-            </div>
-
-            <h2 class="section-title reveal" data-th="เลือกหมวดหมู่ข้อมูลท่องเที่ยว" data-en="Explore Categories">เลือกหมวดหมู่ข้อมูลท่องเที่ยว</h2>
+            <h2 class="section-title reveal" data-th="เลือกหมวดหมู่" data-en="Explore Categories">เลือกหมวดหมู่</h2>
             
             <div class="portal-grid">
                 <div class="portal-card reveal" data-tilt data-tilt-max="12" data-tilt-speed="400" onclick="switchPage('about')">
@@ -845,7 +1170,7 @@
 
     <div id="page-about" class="page-content container">
         <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
-        <h2 class="section-title reveal" data-th="ประวัติและความเป็นมาอย่างละเอียด" data-en="Detailed History & Background">ประวัติและความเป็นมาอย่างละเอียด</h2>
+        <h2 class="section-title reveal" data-th="ประวัติและความเป็นมาอย่างรายละเอียด" data-en="Detailed History & Background">ประวัติและความเป็นมาอย่างรายละเอียด</h2>
         
         <div class="history-section">
             <div class="history-stats-grid reveal">
@@ -868,6 +1193,10 @@
                 <p data-th="สะพานไม้แกดำ ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม ถือเป็นหนึ่งในสะพานไม้โบราณที่ยาวที่สุดในภาคอีสานและประเทศไทย ด้วยระยะทางยาวประมาณ 1,000 เมตร (1 กิโลเมตร) ทอดตัวผ่านอ่างเก็บน้ำหนองแกดำ"
                    data-en="Kae Dam Wooden Bridge is located behind Wat Dao Dueng, Kae Dam District, Maha Sarakham. It is considered one of the longest ancient wooden bridges in Isan and Thailand, stretching over 1,000 meters across the Kae Dam Reservoir.">
                    <strong>สะพานไม้แกดำ</strong> ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม ถือเป็นหนึ่งในสะพานไม้โบราณที่ยาวที่สุดในภาคอีสานและประเทศไทย ด้วยระยะทางยาวประมาณ 1,000 เมตร (1 กิโลเมตร) ทอดตัวผ่านอ่างเก็บน้ำหนองแกดำ
+                </p>
+                <p data-th="สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส"
+                   data-en="Bond of Faith: An ancient wooden bridge stretching over 1,000 meters across Kae Dam Lake, offering charm, local culture, and nature you must experience.">
+                   สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส
                 </p>
                 <p data-th="เดิมทีสะพานแห่งนี้สร้างขึ้นในอดีต (ยาวนานนับร้อยปี) เพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง 'บ้านแกดำ' กับ 'บ้านหัวขัว' (คำว่า 'ขัว' ในภาษาอีสานแปลว่า สะพาน) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่"
                    data-en="Originally, this bridge was built over a century ago as a transportation route for villagers traveling between 'Ban Kae Dam' and 'Ban Hua Khua' ('Khua' means bridge in Isan dialect). It enabled local commuting, livestock grazing, and visiting Wat Dao Dueng without walking around the massive lake.">
@@ -1027,13 +1356,152 @@
         </div>
     </div>
 
+    <!-- หน้าเนื้อหาสำหรับ Footer -->
+    <div id="page-references" class="page-content container">
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
+        <h2 class="section-title reveal" data-th="แหล่งอ้างอิงและเครดิต" data-en="References & Credits">แหล่งอ้างอิงและเครดิต</h2>
+        <div class="history-box reveal">
+            <h3 data-th="📚 แหล่งอ้างอิงข้อมูล" data-en="📚 Data Sources & References">📚 แหล่งอ้างอิงข้อมูล</h3>
+            <p data-th="เว็บไซต์นี้รวบรวมและเรียบเรียงข้อมูลเกี่ยวกับสะพานไม้แกดำและแหล่งท่องเที่ยวจังหวัดมหาสารคาม โดยอ้างอิงข้อมูลจากหน่วยงานภาครัฐ ดังนี้"
+               data-en="This website compiles and arranges information about Kae Dam Wooden Bridge and Maha Sarakham tourist attractions referencing government agencies as follows:">
+               เว็บไซต์นี้รวบรวมและเรียบเรียงข้อมูลเกี่ยวกับสะพานไม้แกดำและแหล่งท่องเที่ยวจังหวัดมหาสารคาม โดยอ้างอิงข้อมูลจากหน่วยงานภาครัฐ ดังนี้
+            </p>
+            <ul class="ref-list">
+                <li>
+                    สำนักงานจังหวัดมหาสารคาม. <strong>ข้อมูลแหล่งท่องเที่ยวจังหวัดมหาสารคาม.</strong><br>
+                    <a href="https://www.mahasarakham.go.th/new/travel_top/detail/2/data.html" target="_blank" style="color: var(--primary); text-decoration: underline; word-break: break-all;">https://www.mahasarakham.go.th/new/travel_top/detail/2/data.html</a>
+                </li>
+                <li>
+                    สำนักงานประชาสัมพันธ์จังหวัดมหาสารคาม. <strong>ข้อมูลแหล่งท่องเที่ยวและสถานที่สำคัญในจังหวัดมหาสารคาม.</strong><br>
+                    <a href="https://mahasarakham.prd.go.th/th/content/category/detail/id/118/iid/11165" target="_blank" style="color: var(--primary); text-decoration: underline; word-break: break-all;">https://mahasarakham.prd.go.th/th/content/category/detail/id/118/iid/11165</a>
+                </li>
+            </ul>
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่สืบค้น: 1 กันยายน 2569" data-en="Access Date: September 1, 2026">
+                📅 <strong>วันที่สืบค้น:</strong> 1 กันยายน 2569
+            </p>
+        </div>
+    </div>
+
+    <div id="page-privacy" class="page-content container">
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
+        <h2 class="section-title reveal" data-th="นโยบายความเป็นส่วนตัว" data-en="Privacy Policy">นโยบายความเป็นส่วนตัว</h2>
+        <div class="history-box reveal">
+            <h3 data-th="🔒 นโยบายความเป็นส่วนตัว (Privacy Policy)" data-en="🔒 Privacy Policy">🔒 นโยบายความเป็นส่วนตัว (Privacy Policy)</h3>
+            <p data-th="เว็บไซต์ “สะพานไม้แกดำ – Kae Dam Wooden Bridge” จัดทำขึ้นเพื่อวัตถุประสงค์ทางการศึกษาและเพื่อเผยแพร่ข้อมูลเกี่ยวกับประวัติ เรื่องราว บรรยากาศ แหล่งท่องเที่ยว และข้อมูลที่เกี่ยวข้องกับสะพานไม้แกดำ จังหวัดมหาสารคาม โดยเว็บไซต์นี้ไม่ได้มีระบบสมัครสมาชิก การเข้าสู่ระบบ หรือแบบฟอร์มที่จัดทำขึ้นเพื่อเก็บรวบรวมข้อมูลส่วนบุคคลของผู้ใช้งาน เช่น ชื่อ นามสกุล ที่อยู่ หรือข้อมูลการชำระเงิน"
+               data-en="The website 'Kae Dam Wooden Bridge' was created for educational purposes and to share information regarding history, stories, atmosphere, attractions, and related data of Kae Dam Wooden Bridge, Maha Sarakham Province. This website does not feature membership registration, login systems, or forms designed to collect user personal data such as full names, addresses, or payment details.">
+               เว็บไซต์ “สะพานไม้แกดำ – Kae Dam Wooden Bridge” จัดทำขึ้นเพื่อวัตถุประสงค์ทางการศึกษาและเพื่อเผยแพร่ข้อมูลเกี่ยวกับประวัติ เรื่องราว บรรยากาศ แหล่งท่องเที่ยว และข้อมูลที่เกี่ยวข้องกับสะพานไม้แกดำ จังหวัดมหาสารคาม โดยเว็บไซต์นี้ไม่ได้มีระบบสมัครสมาชิก การเข้าสู่ระบบ หรือแบบฟอร์มที่จัดทำขึ้นเพื่อเก็บรวบรวมข้อมูลส่วนบุคคลของผู้ใช้งาน เช่น ชื่อ นามสกุล ที่อยู่ หรือข้อมูลการชำระเงิน
+            </p>
+            <p data-th="เว็บไซต์ไม่ได้จัดทำขึ้นเพื่อรวบรวม ใช้ หรือเผยแพร่ข้อมูลส่วนบุคคลของผู้เข้าชมเพื่อวัตถุประสงค์ทางการค้า และไม่มีการจำหน่ายหรือส่งต่อข้อมูลส่วนบุคคลให้แก่บุคคลภายนอก ทั้งนี้ เว็บไซต์อาจมีลิงก์เชื่อมโยงไปยังเว็บไซต์ของหน่วยงานหรือแหล่งข้อมูลภายนอกเพื่อให้ผู้ใช้งานสามารถศึกษาข้อมูลเพิ่มเติมได้ ซึ่งเว็บไซต์ภายนอกดังกล่าวอาจมีนโยบายเกี่ยวกับการเก็บรวบรวมและการใช้ข้อมูลของตนเอง ผู้ใช้งานจึงควรศึกษานโยบายความเป็นส่วนตัวของเว็บไซต์เหล่านั้นเพิ่มเติม"
+               data-en="This website is not created to collect, use, or publish personal data of visitors for commercial purposes, and does not sell or forward personal information to third parties. However, this website may contain links to external sites or sources for further reading. These external sites may have their own data collection policies, so users are advised to review their privacy policies accordingly.">
+               เว็บไซต์ไม่ได้จัดทำขึ้นเพื่อรวบรวม ใช้ หรือเผยแพร่ข้อมูลส่วนบุคคลของผู้เข้าชมเพื่อวัตถุประสงค์ทางการค้า และไม่มีการจำหน่ายหรือส่งต่อข้อมูลส่วนบุคคลให้แก่บุคคลภายนอก ทั้งนี้ เว็บไซต์อาจมีลิงก์เชื่อมโยงไปยังเว็บไซต์ของหน่วยงานหรือแหล่งข้อมูลภายนอกเพื่อให้ผู้ใช้งานสามารถศึกษาข้อมูลเพิ่มเติมได้ ซึ่งเว็บไซต์ภายนอกดังกล่าวอาจมีนโยบายเกี่ยวกับการเก็บรวบรวมและการใช้ข้อมูลของตนเอง ผู้ใช้งานจึงควรศึกษานโยบายความเป็นส่วนตัวของเว็บไซต์เหล่านั้นเพิ่มเติม
+            </p>
+            <p data-th="ข้อมูลและเนื้อหาที่ปรากฏบนเว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษา โดยมีการรวบรวมและเรียบเรียงจากแหล่งข้อมูลที่เกี่ยวข้อง พร้อมระบุแหล่งอ้างอิงตามความเหมาะสม ส่วนภาพประกอบและสื่อที่นำมาใช้จะมีการระบุเครดิตหรือแหล่งที่มาตามที่สามารถตรวจสอบได้ ผู้จัดทำให้ความสำคัญกับการใช้ข้อมูลอย่างเหมาะสมและพยายามหลีกเลี่ยงการเผยแพร่ข้อมูลส่วนบุคคลของบุคคลอื่นโดยไม่ได้รับอนุญาต"
+               data-en="All data and content presented on this website are prepared for educational goals, gathered and compiled from relevant sources with appropriate citations. Images and media used credit their original sources as verifiable. The creator prioritizes appropriate information usage and strives to avoid publishing personal data of others without consent.">
+               ข้อมูลและเนื้อหาที่ปรากฏบนเว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษา โดยมีการรวบรวมและเรียบเรียงจากแหล่งข้อมูลที่เกี่ยวข้อง พร้อมระบุแหล่งอ้างอิงตามความเหมาะสม ส่วนภาพประกอบและสื่อที่นำมาใช้จะมีการระบุเครดิตหรือแหล่งที่มาตามที่สามารถตรวจสอบได้ ผู้จัดทำให้ความสำคัญกับการใช้ข้อมูลอย่างเหมาะสมและพยายามหลีกเลี่ยงการเผยแพร่ข้อมูลส่วนบุคคลของบุคคลอื่นโดยไม่ได้รับอนุญาต
+            </p>
+            <p data-th="หากมีการปรับปรุงรูปแบบหรือเพิ่มฟังก์ชันการทำงานของเว็บไซต์ในอนาคต ซึ่งอาจเกี่ยวข้องกับการเก็บรวบรวมข้อมูลผู้ใช้งาน นโยบายความเป็นส่วนตัวนี้จะได้รับการปรับปรุงให้สอดคล้องกับการใช้งานจริงของเว็บไซต์ต่อไป"
+               data-en="If site design updates or feature additions occur in the future that involve collecting user data, this privacy policy will be updated accordingly to reflect actual operations.">
+               หากมีการปรับปรุงรูปแบบหรือเพิ่มฟังก์ชันการทำงานของเว็บไซต์ในอนาคต ซึ่งอาจเกี่ยวข้องกับการเก็บรวบรวมข้อมูลผู้ใช้งาน นโยบายความเป็นส่วนตัวนี้จะได้รับการปรับปรุงให้สอดคล้องกับการใช้งานจริงของเว็บไซต์ต่อไป
+            </p>
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่ปรับปรุงล่าสุด: 1 กันยายน 2569" data-en="Last Updated: September 1, 2026">
+                📅 <strong>วันที่ปรับปรุงล่าสุด:</strong> 1 กันยายน 2569
+            </p>
+        </div>
+    </div>
+
+    <div id="page-disclaimer" class="page-content container">
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
+        <h2 class="section-title reveal" data-th="ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge" data-en="Disclaimer Kae Dam Wooden Bridge">ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge</h2>
+        <div class="history-box reveal">
+            <h3 data-th="⚠️ ข้อสงวนสิทธิ์ (Disclaimer)" data-en="⚠️ Disclaimer">⚠️ ข้อสงวนสิทธิ์ (Disclaimer)</h3>
+            <p data-th="เว็บไซต์ “สะพานไม้แกดำ – Kae Dam Wooden Bridge” จัดทำขึ้นโดย สุทธิดา จำปาทิ นักศึกษาสาขาบรรณารักษศาสตร์และสารสนเทศศาสตร์ คณะมนุษยศาสตร์และสังคมศาสตร์ มหาวิทยาลัยราชภัฏมหาสารคาม โดยมีวัตถุประสงค์เพื่อการศึกษา การเผยแพร่ความรู้ และส่งเสริมการเรียนรู้เกี่ยวกับสะพานไม้แกดำ จังหวัดมหาสารคาม"
+               data-en="The website 'Kae Dam Wooden Bridge' was created by Suttida Jampati, a student in Library and Information Science, Faculty of Humanities and Social Sciences, Rajabhat Maha Sarakham University, with the purpose of education, disseminating knowledge, and promoting learning about Kae Dam Wooden Bridge, Maha Sarakham Province.">
+               เว็บไซต์ “สะพานไม้แกดำ – Kae Dam Wooden Bridge” จัดทำขึ้นโดย สุทธิดา จำปาทิ นักศึกษาสาขาบรรณารักษศาสตร์และสารสนเทศศาสตร์ คณะมนุษยศาสตร์และสังคมศาสตร์ มหาวิทยาลัยราชภัฏมหาสารคาม โดยมีวัตถุประสงค์เพื่อการศึกษา การเผยแพร่ความรู้ และส่งเสริมการเรียนรู้เกี่ยวกับสะพานไม้แกดำ จังหวัดมหาสารคาม
+            </p>
+            <p data-th="ข้อมูล เนื้อหา ภาพประกอบ และรายละเอียดต่าง ๆ ที่ปรากฏบนเว็บไซต์นี้ได้รับการรวบรวม เรียบเรียง และนำเสนอจากแหล่งข้อมูลที่เกี่ยวข้อง โดยผู้จัดทำพยายามตรวจสอบข้อมูลและระบุแหล่งอ้างอิงตามความเหมาะสม อย่างไรก็ตาม ข้อมูลบางส่วนอาจมีการเปลี่ยนแปลงตามช่วงเวลา เช่น ข้อมูลการเดินทาง สถานที่ให้บริการ กิจกรรม หรือรายละเอียดของแหล่งท่องเที่ยว ผู้ใช้งานจึงควรตรวจสอบข้อมูลกับหน่วยงานหรือแหล่งข้อมูลที่เกี่ยวข้องอีกครั้งก่อนนำไปใช้ในการเดินทางหรือวางแผนท่องเที่ยว"
+               data-en="Information, content, illustrations, and details appearing on this website have been compiled, arranged, and presented from relevant sources. While the creator attempts to verify information and cite sources appropriately, some information may change over time (e.g., travel details, service locations, activities, or tourist site details). Users should verify with relevant agencies or sources before traveling or planning trips.">
+               ข้อมูล เนื้อหา ภาพประกอบ และรายละเอียดต่าง ๆ ที่ปรากฏบนเว็บไซต์นี้ได้รับการรวบรวม เรียบเรียง และนำเสนอจากแหล่งข้อมูลที่เกี่ยวข้อง โดยผู้จัดทำพยายามตรวจสอบข้อมูลและระบุแหล่งอ้างอิงตามความเหมาะสม อย่างไรก็ตาม ข้อมูลบางส่วนอาจมีการเปลี่ยนแปลงตามช่วงเวลา เช่น ข้อมูลการเดินทาง สถานที่ให้บริการ กิจกรรม หรือรายละเอียดของแหล่งท่องเที่ยว ผู้ใช้งานจึงควรตรวจสอบข้อมูลกับหน่วยงานหรือแหล่งข้อมูลที่เกี่ยวข้องอีกครั้งก่อนนำไปใช้ในการเดินทางหรือวางแผนท่องเที่ยว
+            </p>
+            <p data-th="เว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษา ไม่ได้มีวัตถุประสงค์เพื่อแสวงหาผลกำไร และไม่ถือเป็นเว็บไซต์อย่างเป็นทางการของหน่วยงานหรือชุมชนที่ดูแลสะพานไม้แกดำ การนำข้อมูลจากเว็บไซต์ไปใช้ ผู้ใช้งานควรพิจารณาความเหมาะสมและตรวจสอบกับแหล่งข้อมูลต้นทางก่อน"
+               data-en="This website is created for educational purposes without profit-seeking goals and is not an official website of the authority or community managing Kae Dam Wooden Bridge. When using information from this website, users should consider appropriateness and verify with original sources first.">
+               เว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษา ไม่ได้มีวัตถุประสงค์เพื่อแสวงหาผลกำไร และไม่ถือเป็นเว็บไซต์อย่างเป็นทางการของหน่วยงานหรือชุมชนที่ดูแลสะพานไม้แกดำ การนำข้อมูลจากเว็บไซต์ไปใช้ ผู้ใช้งานควรพิจารณาความเหมาะสมและตรวจสอบกับแหล่งข้อมูลต้นทางก่อน
+            </p>
+            <p data-th="ลิขสิทธิ์และสิทธิในข้อมูล ภาพถ่าย เครื่องหมาย หรือสื่อที่เป็นของบุคคลหรือหน่วยงานอื่น ยังคงเป็นของเจ้าของสิทธิ์นั้น ๆ การนำไปใช้ต่อควรเป็นไปตามเงื่อนไขและสิทธิที่เจ้าของผลงานกำหนด สำหรับเนื้อหาและการออกแบบเว็บไซต์ที่จัดทำโดยผู้จัดทำ ขอสงวนสิทธิ์ในการนำไปใช้หรือเผยแพร่โดยไม่ได้รับอนุญาต"
+               data-en="Copyrights and rights in data, photos, trademarks, or media belonging to other individuals or entities remain with their respective owners. Reproduction or further use should comply with terms set by the owners. Content and web design created by the developer are reserved and may not be used or published without permission.">
+               ลิขสิทธิ์และสิทธิในข้อมูล ภาพถ่าย เครื่องหมาย หรือสื่อที่เป็นของบุคคลหรือหน่วยงานอื่น ยังคงเป็นของเจ้าของสิทธิ์นั้น ๆ การนำไปใช้ต่อควรเป็นไปตามเงื่อนไขและสิทธิที่เจ้าของผลงานกำหนด สำหรับเนื้อหาและการออกแบบเว็บไซต์ที่จัดทำโดยผู้จัดทำ ขอสงวนสิทธิ์ในการนำไปใช้หรือเผยแพร่โดยไม่ได้รับอนุญาต
+            </p>
+            <p data-th="การใช้ AI ในการจัดทำเว็บไซต์: ผู้จัดทำใช้ ChatGPT (OpenAI) และ Gemini (Google AI) เป็นเครื่องมือช่วยด้านการคิดแนวทาง การเรียบเรียงเนื้อหา และการพัฒนารหัสเว็บไซต์ โดยผู้จัดทำเป็นผู้ตรวจสอบ ปรับแก้ และตัดสินใจเกี่ยวกับเนื้อหาก่อนเผยแพร่"
+               data-en="Use of AI in site creation: The creator used ChatGPT (OpenAI) and Gemini (Google AI) as assisting tools for brainstorming, content editing, and code development. The creator inspected, edited, and made decisions regarding all content prior to publication.">
+               การใช้ AI ในการจัดทำเว็บไซต์: ผู้จัดทำใช้ <a href="https://chatgpt.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">ChatGPT (OpenAI)</a> และ <a href="https://gemini.google.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">Gemini (Google AI)</a> เป็นเครื่องมือช่วยด้านการคิดแนวทาง การเรียบเรียงเนื้อหา และการพัฒนารหัสเว็บไซต์ โดยผู้จัดทำเป็นผู้ตรวจสอบ ปรับแก้ และตัดสินใจเกี่ยวกับเนื้อหาก่อนเผยแพร่
+            </p>
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่ปรับปรุงล่าสุด: 1 กันยายน 2569" data-en="Last Updated: September 1, 2026">
+                📅 <strong>วันที่ปรับปรุงล่าสุด:</strong> 1 กันยายน 2569
+            </p>
+        </div>
+    </div>
+
     <footer>
-        <p data-th="© 2026 สะพานไม้แกดำ (Kae Dam Wooden Bridge) - อำเภอแกดำ จังหวัดมหาสารคาม" data-en="© 2026 Kae Dam Wooden Bridge - Kae Dam District, Maha Sarakham">© 2026 สะพานไม้แกดำ (Kae Dam Wooden Bridge) - อำเภอแกดำ จังหวัดมหาสารคาม</p>
-        <p class="footer-sub" data-th="อนุรักษ์ธรรมชาติ และส่งเสริมการท่องเที่ยววิถีชุมชนอย่างยั่งยืน" data-en="Preserving nature and promoting sustainable community tourism">อนุรักษ์ธรรมชาติ และส่งเสริมการท่องเที่ยววิถีชุมชนอย่างยั่งยืน</p>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3 data-th="สะพานไม้แกดำ – Kae Dam Wooden Bridge" data-en="Kae Dam Wooden Bridge">สะพานไม้แกดำ – Kae Dam Wooden Bridge</h3>
+                <p data-th="เว็บไซต์นำเสนอข้อมูล ประวัติ เรื่องราว และเสน่ห์ของสะพานไม้แกดำ จังหวัดมหาสารคาม เพื่อส่งเสริมการเรียนรู้และการท่องเที่ยวเชิงวัฒนธรรม" data-en="Website presenting information, history, stories, and charm of Kae Dam Wooden Bridge, Maha Sarakham Province, to promote learning and cultural tourism.">เว็บไซต์นำเสนอข้อมูล ประวัติ เรื่องราว และเสน่ห์ของสะพานไม้แกดำ จังหวัดมหาสารคาม เพื่อส่งเสริมการเรียนรู้และการท่องเที่ยวเชิงวัฒนธรรม</p>
+                <h4 style="margin-top: 1rem;" data-th="ผู้จัดทำ" data-en="Created By">ผู้จัดทำ</h4>
+                <p><strong>นางสาว สุทธิดา จำปาทิ</strong><br>
+                <span data-th="สาขาบรรณารักษศาสตร์และสารสนเทศศาสตร์" data-en="Department of Library and Information Science">สาขาบรรณารักษศาสตร์และสารสนเทศศาสตร์</span><br>
+                <span data-th="คณะมนุษยศาสตร์และสังคมศาสตร์" data-en="Faculty of Humanities and Social Sciences">คณะมนุษยศาสตร์และสังคมศาสตร์</span><br>
+                <span data-th="มหาวิทยาลัยราชภัฏมหาสารคาม" data-en="Rajabhat Maha Sarakham University">มหาวิทยาลัยราชภัฏมหาสารคาม</span></p>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-th="การเผยแพร่" data-en="Publishing">การเผยแพร่</h4>
+                <p><a href="https://github.com/" target="_blank" style="color: var(--footer-text-muted); text-decoration: underline;" data-th="เว็บไซต์เผยแพร่ผ่าน GitHub / GitHub Pages" data-en="Website published via GitHub / GitHub Pages">เว็บไซต์เผยแพร่ผ่าน GitHub / GitHub Pages</a></p>
+                <div class="footer-links" style="margin-top: 1rem; text-align: left;">
+                    <p style="margin-bottom: 0.3rem;"><a onclick="switchPage('references')" data-th="แหล่งอ้างอิงและเครดิต" data-en="References & Credits">แหล่งอ้างอิงและเครดิต</a></p>
+                    <p style="margin-bottom: 0.3rem;"><a onclick="switchPage('privacy')" data-th="นโยบายความเป็นส่วนตัว" data-en="Privacy Policy">นโยบายความเป็นส่วนตัว</a></p>
+                    <p style="margin-bottom: 0.3rem;"><a onclick="switchPage('disclaimer')" data-th="ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge" data-en="Disclaimer Kae Dam Wooden Bridge">ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge</a></p>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-th="เครดิตและแหล่งข้อมูล" data-en="Credits & Data Sources">เครดิตและแหล่งข้อมูล</h4>
+                <p data-th="📷 ภาพประกอบ: ภาพถ่ายโดยผู้จัดทำเว็บไซต์" data-en="📷 Images: Photos taken by the website developer">📷 ภาพประกอบ: ภาพถ่ายโดยผู้จัดทำเว็บไซต์</p>
+                <p data-th="📚 ข้อมูล: รวบรวมและเรียบเรียงจากแหล่งข้อมูลที่ระบุไว้ในหน้าแหล่งอ้างอิง" data-en="📚 Information: Compiled and arranged from sources listed on the references page">📚 ข้อมูล: รวบรวมและเรียบเรียงจากแหล่งข้อมูลที่ระบุไว้ในหน้าแหล่งอ้างอิง</p>
+                <p data-th="🤖 เครื่องมือ AI: ChatGPT (OpenAI) และ Gemini (Google AI)" data-en="🤖 AI Tools: ChatGPT (OpenAI) and Gemini (Google AI)">🤖 เครื่องมือ AI: <a href="https://chatgpt.com/" target="_blank" style="color: var(--footer-text-muted); text-decoration: underline;">ChatGPT (OpenAI)</a> และ <a href="https://gemini.google.com/" target="_blank" style="color: var(--footer-text-muted); text-decoration: underline;">Gemini (Google AI)</a></p>
+                <p style="font-size: 0.85rem;" data-th="AI ใช้เป็นเครื่องมือช่วยในการเรียบเรียงเนื้อหา ระดมความคิด และพัฒนารหัสเว็บไซต์ โดยผู้จัดทำเป็นผู้ตรวจสอบและเรียบเรียงก่อนเผยแพร่" data-en="AI was used as a tool to help structure content, brainstorm, and develop website code. The creator reviewed and edited all material before publishing.">AI ใช้เป็นเครื่องมือช่วยในการเรียบเรียงเนื้อหา ระดมความคิด และพัฒนารหัสเว็บไซต์ โดยผู้จัดทำเป็นผู้ตรวจสอบและเรียบเรียงก่อนเผยแพร่</p>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-th="เมนูเว็บไซต์" data-en="Menu">เมนูเว็บไซต์</h4>
+                <ul>
+                    <li><a onclick="switchPage('home')" data-th="หน้าแรก" data-en="Home">หน้าแรก</a></li>
+                    <li><a onclick="switchPage('about')" data-th="เรื่องราวสะพานไม้แกดำ" data-en="Story of Kae Dam Bridge">เรื่องราวสะพานไม้แกดำ</a></li>
+                    <li><a onclick="switchPage('gallery')" data-th="แกลเลอรี" data-en="Gallery">แกลเลอรี</a></li>
+                    <li><a onclick="switchPage('travel')" data-th="ข้อมูลการท่องเที่ยว" data-en="Travel Info">ข้อมูลการท่องเที่ยว</a></li>
+                    <li><a onclick="switchPage('faq')" data-th="คำถามที่พบบ่อย" data-en="FAQ">คำถามที่พบบ่อย</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p data-th="© 2026 สะพานไม้แกดำ – Kae Dam Wooden Bridge" data-en="© 2026 Kae Dam Wooden Bridge">© 2026 สะพานไม้แกดำ – Kae Dam Wooden Bridge</p>
+            <p data-th="จัดทำขึ้นเพื่อการศึกษาและเผยแพร่ความรู้เกี่ยวกับสะพานไม้แกดำ" data-en="Created for educational purposes and sharing knowledge about Kae Dam Wooden Bridge">จัดทำขึ้นเพื่อการศึกษาและเผยแพร่ความรู้เกี่ยวกับสะพานไม้แกดำ</p>
+        </div>
     </footer>
 
     <script>
         let currentLang = 'th';
+
+        // 🚪 ฟังก์ชันปิด Welcome Popup
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            if (popup) {
+                popup.classList.add('fade-out');
+                document.body.classList.remove('popup-open');
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 600);
+            }
+        }
 
         // 🌐 ระบบสลับภาษา (Multi-Language Switcher)
         function toggleLanguage() {
@@ -1130,6 +1598,7 @@
         // ☀️ Live Weather Fetcher
         async function fetchWeather() {
             const weatherEl = document.getElementById('weather-info');
+            if (!weatherEl) return;
             try {
                 const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=16.0353&longitude=103.3853&current_weather=true');
                 const data = await res.json();
