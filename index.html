@@ -282,13 +282,26 @@
 
         .hamburger-btn {
             display: none;
-            background: transparent;
-            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
             color: var(--nav-text);
-            font-size: 1.8rem;
+            font-size: 0.95rem;
+            font-weight: 500;
             cursor: pointer;
-            padding: 0.2rem 0.5rem;
+            padding: 0.35rem 0.75rem;
             border-radius: 8px;
+            align-items: center;
+            gap: 6px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hamburger-btn .hamburger-icon {
+            font-size: 1.1rem;
             line-height: 1;
         }
 
@@ -1119,7 +1132,7 @@
             nav .logo-icon { font-size: 1.4rem; }
 
             .hamburger-btn {
-                display: block;
+                display: inline-flex;
             }
 
             .nav-right-container {
@@ -1218,7 +1231,10 @@
             </div>
         </div>
 
-        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">
+            <span class="hamburger-icon">☰</span>
+            <span id="hamburgerText" data-th="เมนู" data-en="Menu">เมนู</span>
+        </button>
 
         <div class="nav-right-container" id="navRightContainer">
             <ul>
@@ -1518,7 +1534,7 @@
     </div>
 
     <div id="page-faq" class="page-content container">
-        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← Back to Home</a>
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
         <h2 class="section-title reveal" data-th="คำถามที่พบบ่อย (FAQ)" data-en="Frequently Asked Questions">คำถามที่พบบ่อย (FAQ)</h2>
         <div class="faq-item reveal" onclick="toggleFaq(this)">
             <h4 data-th="❓ เสียค่าเข้าชมหรือไม่?" data-en="❓ Is there an entry fee?">❓ เสียค่าเข้าชมหรือไม่?</h4>
@@ -1654,7 +1670,7 @@
     </div>
 
     <div id="page-disclaimer" class="page-content container">
-        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← Back to Home</a>
         <h2 class="section-title reveal" data-th="ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge" data-en="Disclaimer Kae Dam Wooden Bridge">ข้อสงวนสิทธิ์สะพานไม้แกดำ – Kae Dam Wooden Bridge</h2>
         <div class="history-box reveal">
             <h3 data-th="⚠️ ข้อสงวนสิทธิ์ (Disclaimer)" data-en="⚠️ Disclaimer">⚠️ ข้อสงวนสิทธิ์ (Disclaimer)</h3>
