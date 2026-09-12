@@ -68,6 +68,7 @@
             color: var(--text-main);
             line-height: 1.8;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         /* -----------------------------------------
@@ -279,10 +280,28 @@
         nav .logo-th { font-size: 1.5rem; font-weight: 700; color: var(--nav-text); letter-spacing: 0.5px; }
         nav .logo-en { font-size: 0.72rem; font-weight: 500; color: var(--nav-text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
 
+        .hamburger-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--nav-text);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.2rem 0.5rem;
+            border-radius: 8px;
+            line-height: 1;
+        }
+
         .nav-right-container {
             display: flex;
             align-items: center;
             gap: 1rem;
+        }
+
+        .action-buttons-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
         nav ul { display: flex; list-style: none; gap: 0.8rem; }
@@ -296,6 +315,7 @@
             cursor: pointer;
             padding: 0.4rem 0.8rem;
             border-radius: 8px;
+            display: block;
         }
 
         nav a:hover, nav a.active {
@@ -1074,7 +1094,7 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive Breakpoints & Navigation Styling */
         @media (max-width: 1024px) {
             .gallery-5col-grid { grid-template-columns: repeat(3, 1fr); }
             .portal-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1083,15 +1103,84 @@
             .home-hero h1 { font-size: 3.2rem; }
             .hero-gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
             .hero-thumb { height: 75px; }
-            nav { padding: 1rem; flex-direction: column; gap: 10px; }
-            .nav-right-container { flex-direction: column; gap: 10px; }
-            nav ul { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+            
+            nav {
+                padding: 0.8rem 1.2rem;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                position: sticky;
+                top: 0;
+                width: 100%;
+            }
+
+            nav .logo-th { font-size: 1.15rem; }
+            nav .logo-en { font-size: 0.6rem; letter-spacing: 0.8px; }
+            nav .logo-icon { font-size: 1.4rem; }
+
+            .hamburger-btn {
+                display: block;
+            }
+
+            .nav-right-container {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--nav-bg);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 1rem 1.2rem 1.5rem;
+                border-bottom: 2px solid var(--accent);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+                display: none;
+            }
+
+            .nav-right-container.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.4rem;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+
+            nav a {
+                padding: 0.75rem 1rem;
+                font-size: 1.05rem;
+                border-radius: 10px;
+                text-align: left;
+                width: 100%;
+            }
+
+            .action-buttons-wrapper {
+                justify-content: flex-start;
+                gap: 0.8rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.15);
+                padding-top: 1rem;
+                width: 100%;
+            }
+
+            .action-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.95rem;
+                border-radius: 25px;
+            }
+
             .history-box { padding: 1.5rem 1.2rem; }
             .gallery-5col-grid { grid-template-columns: repeat(2, 1fr); }
             .portal-grid { grid-template-columns: repeat(2, 1fr); }
             .home-hero { background-attachment: scroll; }
         }
         @media (max-width: 480px) {
+            nav { padding: 0.7rem 1rem; }
+            nav .logo-th { font-size: 1rem; }
+            nav .logo-en { font-size: 0.55rem; letter-spacing: 0.5px; }
             .container { padding: 0 1rem; margin: 2rem auto; }
             .history-box { padding: 1.25rem 1rem; }
             .gallery-5col-grid { grid-template-columns: repeat(1, 1fr); }
@@ -1128,7 +1217,10 @@
                 <span class="logo-en">Kae Dam Wooden Bridge</span>
             </div>
         </div>
-        <div class="nav-right-container">
+
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
+
+        <div class="nav-right-container" id="navRightContainer">
             <ul>
                 <li><a id="nav-home" class="active" onclick="switchPage('home')" data-th="หน้าแรก" data-en="Home">หน้าแรก</a></li>
                 <li><a id="nav-about" onclick="switchPage('about')" data-th="ประวัติ" data-en="History">ประวัติ</a></li>
@@ -1138,13 +1230,15 @@
                 <li><a id="nav-faq" onclick="switchPage('faq')" data-th="คำถามพบบ่อย" data-en="FAQ">คำถามพบบ่อย</a></li>
             </ul>
             
-            <button class="action-btn" onclick="toggleLanguage()" id="langBtn">
-                🌐 <span id="langText">EN</span>
-            </button>
+            <div class="action-buttons-wrapper">
+                <button class="action-btn" onclick="toggleLanguage()" id="langBtn">
+                    🌐 <span id="langText">EN</span>
+                </button>
 
-            <button class="action-btn" onclick="toggleTheme()" id="themeBtn">
-                <span id="themeIcon">🌙</span> <span id="themeText" data-th="มืด" data-en="Dark">มืด</span>
-            </button>
+                <button class="action-btn" onclick="toggleTheme()" id="themeBtn">
+                    <span id="themeIcon">🌙</span> <span id="themeText" data-th="มืด" data-en="Dark">มืด</span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -1424,7 +1518,7 @@
     </div>
 
     <div id="page-faq" class="page-content container">
-        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
+        <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← Back to Home</a>
         <h2 class="section-title reveal" data-th="คำถามที่พบบ่อย (FAQ)" data-en="Frequently Asked Questions">คำถามที่พบบ่อย (FAQ)</h2>
         <div class="faq-item reveal" onclick="toggleFaq(this)">
             <h4 data-th="❓ เสียค่าเข้าชมหรือไม่?" data-en="❓ Is there an entry fee?">❓ เสียค่าเข้าชมหรือไม่?</h4>
@@ -1653,6 +1747,21 @@
             }
         }
 
+        // 🍔 ระบบสลับแสดง/ซ่อน เมนูมือถือ (Hamburger Menu)
+        function toggleMobileMenu() {
+            const navRight = document.getElementById('navRightContainer');
+            if (navRight) {
+                navRight.classList.toggle('active');
+            }
+        }
+
+        function closeMobileMenu() {
+            const navRight = document.getElementById('navRightContainer');
+            if (navRight && navRight.classList.contains('active')) {
+                navRight.classList.remove('active');
+            }
+        }
+
         // 🌐 ระบบสลับภาษา (Multi-Language Switcher)
         function toggleLanguage() {
             currentLang = currentLang === 'th' ? 'en' : 'th';
@@ -1688,6 +1797,9 @@
             if (targetNav) {
                 targetNav.classList.add('active');
             }
+
+            // ปิดเมนู Hamburger บนมือถือเมื่อกดเลือกเมนูแล้ว
+            closeMobileMenu();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setTimeout(initScrollReveal, 100);
