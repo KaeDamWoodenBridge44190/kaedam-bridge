@@ -674,10 +674,10 @@
         }
 
         .stat-card .stat-number {
-            font-size: 2.2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--accent);
-            line-height: 1.2;
+            line-height: 1.4;
         }
 
         .stat-card .stat-label {
@@ -809,6 +809,33 @@
         }
         .map-container iframe { width: 100%; height: 100%; border: 0; }
 
+        .map-btn-wrapper {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--accent) 0%, #8c5812 100%);
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(181, 131, 55, 0.35);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .map-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 10px 25px rgba(181, 131, 55, 0.5);
+            color: #ffffff;
+        }
+
         .faq-item {
             background: var(--card-bg);
             border-radius: var(--radius-md);
@@ -816,8 +843,40 @@
             margin-bottom: 1.2rem;
             box-shadow: var(--shadow-sm);
             border: 1px solid rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .faq-item h4 { color: var(--dark); margin-bottom: 0.4rem; font-weight: 600; font-size: 1.1rem; }
+        .faq-item h4 {
+            color: var(--dark);
+            margin-bottom: 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item h4::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+            margin-left: 10px;
+        }
+        .faq-item.active h4::after {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 0.8rem;
+        }
 
         .back-to-home {
             display: inline-flex;
@@ -989,7 +1048,7 @@
         .ref-list li {
             position: relative;
             padding-left: 1.8rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.0rem;
             line-height: 1.7;
         }
         .ref-list li::before {
@@ -1027,12 +1086,14 @@
             nav { padding: 1rem; flex-direction: column; gap: 10px; }
             .nav-right-container { flex-direction: column; gap: 10px; }
             nav ul { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
-            .history-box { padding: 1.8rem; }
+            .history-box { padding: 1.5rem 1.2rem; }
             .gallery-5col-grid { grid-template-columns: repeat(2, 1fr); }
             .portal-grid { grid-template-columns: repeat(2, 1fr); }
             .home-hero { background-attachment: scroll; }
         }
         @media (max-width: 480px) {
+            .container { padding: 0 1rem; margin: 2rem auto; }
+            .history-box { padding: 1.25rem 1rem; }
             .gallery-5col-grid { grid-template-columns: repeat(1, 1fr); }
             .portal-grid { grid-template-columns: repeat(1, 1fr); }
         }
@@ -1096,9 +1157,9 @@
         <header class="home-hero">
             <div class="hero-badge" data-th="📍 อำเภอแกดำ จังหวัดมหาสารคาม" data-en="📍 Kae Dam District, Maha Sarakham">📍 อำเภอแกดำ จังหวัดมหาสารคาม</div>
             <h1 data-th="สะพานไม้แกดำ" data-en="Kae Dam Wooden Bridge">สะพานไม้แกดำ</h1>
-            <p data-th="สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส"
-               data-en="Bond of Faith: An ancient wooden bridge stretching over 1,000 meters across Kae Dam Lake, offering charm, local culture, and nature you must experience.">
-               สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส
+            <p data-th="สะพานไม้ที่ทอดตัวผ่านหนองแกดำ สะท้อนวิถีชีวิตและภูมิปัญญาของชุมชน มนต์เสน่ห์แห่งธรรมชาติที่คุณต้องมาสัมผัส"
+               data-en="A wooden bridge stretching across Kae Dam Lake, reflecting the local lifestyle and community wisdom—a natural charm you must experience.">
+               สะพานไม้ที่ทอดตัวผ่านหนองแกดำ สะท้อนวิถีชีวิตและภูมิปัญญาของชุมชน มนต์เสน่ห์แห่งธรรมชาติที่คุณต้องมาสัมผัส
             </p>
 
             <div class="hero-gallery-grid">
@@ -1138,7 +1199,7 @@
                 <div class="portal-card reveal" data-tilt data-tilt-max="12" data-tilt-speed="400" onclick="switchPage('about')">
                     <div class="icon-wrapper">📜</div>
                     <h3 data-th="ประวัติความเป็นมา" data-en="History & Origins">ประวัติความเป็นมา</h3>
-                    <p data-th="เรื่องราวภูมิปัญญาท้องถิ่นและการร่วมใจสร้างสะพานนับร้อยปี" data-en="Local wisdom and a century-old story of community unity.">เรื่องราวภูมิปัญญาท้องถิ่นและการร่วมใจสร้างสะพานนับร้อยปี</p>
+                    <p data-th="เรื่องราวภูมิปัญญาท้องถิ่นและการร่วมใจสร้างสะพานของชุมชน" data-en="Local wisdom and community unity story.">เรื่องราวภูมิปัญญาท้องถิ่นและการร่วมใจสร้างสะพานของชุมชน</p>
                 </div>
 
                 <div class="portal-card reveal" data-tilt data-tilt-max="12" data-tilt-speed="400" onclick="switchPage('gallery')">
@@ -1172,47 +1233,59 @@
         <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
         <h2 class="section-title reveal" data-th="ประวัติและความเป็นมาอย่างรายละเอียด" data-en="Detailed History & Background">ประวัติและความเป็นมาอย่างรายละเอียด</h2>
         
+        <!-- กล่องหมายเหตุเกี่ยวกับข้อมูล (Information Note Box) -->
+        <div class="weather-card reveal" style="max-width: 100%; text-align: left; background: var(--accent-light); border-left: 5px solid var(--accent); margin-top: 0; margin-bottom: 2rem;">
+            <h4 style="display: flex; align-items: center; gap: 8px;" data-th="📌 หมายเหตุเกี่ยวกับข้อมูลประวัติความเป็นมา" data-en="📌 Note Regarding Historical Information">
+                📌 หมายเหตุเกี่ยวกับข้อมูลประวัติความเป็นมา
+            </h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);" 
+               data-th="เนื้อหาในหน้านี้ถูกเรียบเรียงขึ้นตามข้อมูลจากหน่วยงานภาครัฐในจังหวัดมหาสารคาม ร่วมกับเรื่องเล่าสืบต่อกันมาของชุมชนท้องถิ่น รายละเอียดบางประการทางประวัติศาสตร์ เช่น ปี พ.ศ. แรกสร้าง ตัวเลขมิติโครงสร้าง หรือปีการซ่อมแซมใหญ่ในแต่ละช่วงเวลา อาจมีข้อมูลหลากหลายฉบับและยังอยู่ในระหว่างการสืบค้นเพื่อหลักฐานทางวิชาการเพิ่มเติม"
+               data-en="Content on this page is compiled based on information from official provincial agencies of Maha Sarakham alongside traditional oral histories from the local community. Certain historical details—such as exact construction years, structural dimensions, or timeline of major restorations—may vary across sources and remain under ongoing academic study.">
+               เนื้อหาในหน้านี้ถูกเรียบเรียงขึ้นตามข้อมูลจากหน่วยงานภาครัฐในจังหวัดมหาสารคาม ร่วมกับเรื่องเล่าสืบต่อกันมาของชุมชนท้องถิ่น รายละเอียดบางประการทางประวัติศาสตร์ เช่น ปี พ.ศ. แรกสร้าง ตัวเลขมิติโครงสร้าง หรือปีการซ่อมแซมใหญ่ในแต่ละช่วงเวลา อาจมีข้อมูลหลากหลายฉบับและยังอยู่ในระหว่างการสืบค้นเพื่อหลักฐานทางวิชาการเพิ่มเติม
+            </p>
+        </div>
+
         <div class="history-section">
             <div class="history-stats-grid reveal">
                 <div class="stat-card">
-                    <div class="stat-number">100+ ปี</div>
-                    <div class="stat-label" data-th="อายุสะพานไม้แห่งภูมิปัญญา" data-en="Years of Cultural Heritage">อายุสะพานไม้แห่งภูมิปัญญา</div>
+                    <div class="stat-number" data-th="สะพานไม้เก่าแก่ของชุมชน" data-en="Historical Local Wooden Bridge">สะพานไม้เก่าแก่ของชุมชน</div>
+                    <div class="stat-label" data-th="สะพานไม้แห่งภูมิปัญญา" data-en="Heritage Wooden Bridge">สะพานไม้แห่งภูมิปัญญา</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">1,000 เมตร</div>
-                    <div class="stat-label" data-th="ความยาวทอดข้ามบึงน้ำ" data-en="Meters Length Across the Lake">ความยาวทอดข้ามบึงน้ำ</div>
+                    <div class="stat-number" data-th="ทอดตัวผ่านพื้นที่หนองแกดำ" data-en="Stretching Across Kae Dam Lake">ทอดตัวผ่านพื้นที่หนองแกดำ</div>
+                    <div class="stat-label" data-th="เส้นทางข้ามบึงน้ำ" data-en="Lake Crossing Route">เส้นทางข้ามบึงน้ำ</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">1,400+ ไร่</div>
-                    <div class="stat-label" data-th="พื้นที่อ่างเก็บน้ำหนองแกดำ" data-en="Rai Area of Kae Dam Reservoir">พื้นที่อ่างเก็บน้ำหนองแกดำ</div>
+                    <div class="stat-number" data-th="หนองแกดำเป็นพื้นที่สำคัญของชุมชนโดยรอบ" data-en="Kae Dam Lake is Important to Local Community">หนองแกดำเป็นพื้นที่สำคัญของชุมชนโดยรอบ</div>
+                    <div class="stat-label" data-th="อ่างเก็บน้ำและระบบนิเวศชุมชน" data-en="Community Reservoir & Ecosystem">อ่างเก็บน้ำและระบบนิเวศชุมชน</div>
                 </div>
             </div>
 
             <div class="history-box reveal">
                 <h3 data-th="🌉 จุดเริ่มต้นแห่งเส้นทางข้ามสายน้ำ" data-en="🌉 The Beginning of the Crossing Route">🌉 จุดเริ่มต้นแห่งเส้นทางข้ามสายน้ำ</h3>
-                <p data-th="สะพานไม้แกดำ ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม ถือเป็นหนึ่งในสะพานไม้โบราณที่ยาวที่สุดในภาคอีสานและประเทศไทย ด้วยระยะทางยาวประมาณ 1,000 เมตร (1 กิโลเมตร) ทอดตัวผ่านอ่างเก็บน้ำหนองแกดำ"
-                   data-en="Kae Dam Wooden Bridge is located behind Wat Dao Dueng, Kae Dam District, Maha Sarakham. It is considered one of the longest ancient wooden bridges in Isan and Thailand, stretching over 1,000 meters across the Kae Dam Reservoir.">
-                   <strong>สะพานไม้แกดำ</strong> ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม ถือเป็นหนึ่งในสะพานไม้โบราณที่ยาวที่สุดในภาคอีสานและประเทศไทย ด้วยระยะทางยาวประมาณ 1,000 เมตร (1 กิโลเมตร) ทอดตัวผ่านอ่างเก็บน้ำหนองแกดำ
+                <p data-th="สะพานไม้แกดำ ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม เป็นสะพานไม้เก่าแก่ของชุมชนที่ทอดตัวผ่านพื้นที่หนองแกดำ"
+                   data-en="Kae Dam Wooden Bridge is located behind Wat Dao Dueng, Kae Dam District, Maha Sarakham. It is an old wooden bridge of the community stretching across Kae Dam Lake.">
+                   <strong>สะพานไม้แกดำ</strong> ตั้งอยู่ด้านหลังวัดดาวดึงษ์ ตำบลแกดำ อำเภอแกดำ จังหวัดมหาสารคาม เป็นสะพานไม้เก่าแก่ของชุมชนที่ทอดตัวผ่านพื้นที่หนองแกดำ
                 </p>
-                <p data-th="สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส"
-                   data-en="Bond of Faith: An ancient wooden bridge stretching over 1,000 meters across Kae Dam Lake, offering charm, local culture, and nature you must experience.">
-                   สายใยแห่งศรัทธา สะพานไม้โบราณข้ามหนองแกดำยาวกว่า 1,000 เมตร มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส
+                <p data-th="สายใยแห่งศรัทธา สะพานไม้เก่าแก่ของชุมชนที่ทอดตัวผ่านพื้นที่หนองแกดำ มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส (ข้อมูลรายละเอียดด้านอายุสะพาน ความยาว และพื้นที่ อาจแตกต่างกันตามแหล่งข้อมูล)"
+                   data-en="Bond of Faith: An old wooden bridge stretching across Kae Dam Lake, offering charm, local culture, and nature you must experience. (Details regarding bridge age, length, and area may vary depending on sources.)">
+                   สายใยแห่งศรัทธา สะพานไม้เก่าแก่ของชุมชนที่ทอดตัวผ่านพื้นที่หนองแกดำ มนต์เสน่ห์แห่งวิถีชีวิตและธรรมชาติที่คุณต้องมาสัมผัส (ข้อมูลรายละเอียดด้านอายุสะพาน ความยาว และพื้นที่ อาจแตกต่างกันตามแหล่งข้อมูล)
                 </p>
-                <p data-th="เดิมทีสะพานแห่งนี้สร้างขึ้นในอดีต (ยาวนานนับร้อยปี) เพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง 'บ้านแกดำ' กับ 'บ้านหัวขัว' (คำว่า 'ขัว' ในภาษาอีสานแปลว่า สะพาน) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่"
-                   data-en="Originally, this bridge was built over a century ago as a transportation route for villagers traveling between 'Ban Kae Dam' and 'Ban Hua Khua' ('Khua' means bridge in Isan dialect). It enabled local commuting, livestock grazing, and visiting Wat Dao Dueng without walking around the massive lake.">
-                   เดิมทีสะพานแห่งนี้สร้างขึ้นในอดีต (ยาวนานนับร้อยปี) เพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง <strong>"บ้านแกดำ"</strong> กับ <strong>"บ้านหัวขัว"</strong> (คำว่า <em>"ขัว"</em> ในภาษาอีสานแปลว่า <em>สะพาน</em>) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่
+                <p data-th="มีข้อมูลและเรื่องเล่าสืบต่อกันมาว่า สะพานแห่งนี้สร้างขึ้นในอดีตเพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง 'บ้านแกดำ' กับ 'บ้านหัวขัว' (คำว่า 'ขัว' ในภาษาอีสานแปลว่า สะพาน) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่"
+                   data-en="It is documented and traditionally told that this bridge was built in the past as a land transit route for villagers connecting 'Ban Kae Dam' and 'Ban Hua Khua' ('Khua' means bridge in Isan dialect). It enabled local commuting, livestock grazing, and visiting Wat Dao Dueng conveniently without walking around the large lake.">
+                   มีข้อมูลและเรื่องเล่าสืบต่อกันมาว่า สะพานแห่งนี้สร้างขึ้นในอดีตเพื่อใช้เป็นเส้นทางสัญจรทางบกสำหรับชาวบ้านในการเดินทางติดต่อหาสู่กันระหว่าง <strong>"บ้านแกดำ"</strong> กับ <strong>"บ้านหัวขัว"</strong> (คำว่า <em>"ขัว"</em> ในภาษาอีสานแปลว่า <em>สะพาน</em>) รวมทั้งใช้เป็นเส้นทางไปทำมาหากิน นำสัตว์เลี้ยงไปเลี้ยง และเดินทางไปกราบไหว้พระทำบุญที่วัดดาวดึงษ์ได้อย่างสะดวก โดยไม่ต้องอ้อมบึงน้ำขนาดใหญ่
                 </p>
             </div>
 
             <div class="history-box reveal">
                 <h3 data-th="🌿 ความสำคัญของ 'หนองแกดำ' และระบบนิเวศ" data-en="🌿 Significance of Kae Dam Lake & Ecosystem">🌿 ความสำคัญของ "หนองแกดำ" และระบบนิเวศ</h3>
-                <p data-th="หนองแกดำ เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ กระจายอยู่ในพื้นที่ 3 หมู่บ้าน ได้แก่ บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน"
-                   data-en="Kae Dam Nong is a natural lake covering over 1,400 Rai across 3 villages: Ban Kae Dam, Ban Hua Khua, and Ban Pho Si. It acts as a reservoir and breeding ground for aquatic life, sustaining local livelihoods for generations.">
-                   <strong>หนองแกดำ</strong> เป็นบึงน้ำธรรมชาติขนาดใหญ่ที่มีพื้นที่ครอบคลุมกว่า 1,400 ไร่ กระจายอยู่ในพื้นที่ 3 หมู่บ้าน ได้แก่ บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน
+                <p data-th="หนองแกดำ เป็นบึงน้ำธรรมชาติขนาดใหญ่ และเป็นพื้นที่สำคัญของชุมชนโดยรอบ กระจายอยู่ในพื้นที่หมู่บ้านต่าง ๆ เช่น บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน"
+                   data-en="Kae Dam Lake is a large natural lake and an important area for the surrounding community, covering various villages such as Ban Kae Dam, Ban Hua Khua, and Ban Pho Si. It acts as a reservoir and breeding ground for aquatic life, sustaining local livelihoods for generations.">
+                   <strong>หนองแกดำ</strong> เป็นบึงน้ำธรรมชาติขนาดใหญ่ และเป็นพื้นที่สำคัญของชุมชนโดยรอบ กระจายอยู่ในพื้นที่หมู่บ้านต่าง ๆ เช่น บ้านแกดำ บ้านหัวขัว และบ้านโพธิ์ศรี บึงน้ำแห่งนี้เป็นอ่างเก็บน้ำและแหล่งเพาะพันธุ์ปลาธรรมชาติที่หล่อเลี้ยงชีวิตของชาวอำเภอแกดำมาหลายชั่วอายุคน
                 </p>
-                <p data-th="สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว"
-                   data-en="The surrounding environment is rich in biodiversity, featuring aquatic plants like red lotuses, reeds, and duckweed, as well as sheltering various waterbirds. This makes the wooden bridge a peaceful, charming natural viewpoint.">
-                   สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว
+                <p data-th="สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว (หมายเหตุ: ข้อมูลรายละเอียดด้านอายุสะพาน ความยาว และพื้นที่ อาจแตกต่างกันตามแหล่งข้อมูล)"
+                   data-en="The surrounding environment is rich in biodiversity, featuring aquatic plants like red lotuses, reeds, and duckweed, as well as sheltering various waterbirds. This makes the wooden bridge a peaceful, charming natural viewpoint. (Note: Details regarding bridge age, length, and area may vary depending on sources.)">
+                   สภาพแวดล้อมรอบบึงน้ำเปี่ยมไปด้วยความหลากหลายทางชีวภาพ มีพืชน้ำอุดมสมบูรณ์ อาทิ บัวสาย บัวแดง กก จาน และแหน รวมถึงเป็นที่อยู่อาศัยของนกน้ำหลากชนิด ทำให้สะพานไม้แห่งนี้กลายเป็นจุดชมวิวธรรมชาติอันเงียบสงบและมีเสน่ห์เฉพาะตัว (หมายเหตุ: ข้อมูลรายละเอียดด้านอายุสะพาน ความยาว และพื้นที่ อาจแตกต่างกันตามแหล่งข้อมูล)
                 </p>
             </div>
 
@@ -1273,30 +1346,37 @@
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="❄️ ฤดูหนาว (พ.ย. - ก.พ.)" data-en="❄️ Winter (Nov - Feb)">❄️ ฤดูหนาว (พ.ย. - ก.พ.)</h3>
-                    <p data-th="ไฮไลต์: อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด"
-                       data-en="Highlights: Cool weather, morning mist over the water surface, blooming red lotuses; perfect for photography.">
-                       <strong>ไฮไลต์:</strong> อากาศเย็นสบาย ยามเช้ามีหมอกลอยต่ำเหนือผิวน้ำ บัวแดงเริ่มบานสะพรั่ง เหมาะกับการถ่ายภาพมากที่สุด
+                    <p data-th="แนะนำ: สัมผัสบรรยากาศลมเย็นสบาย อาจมีโอกาสพบสายหมอกยามเช้าและดอกบัวในบึง เหมาะสำหรับการเดินถ่ายภาพชมธรรมชาติ"
+                       data-en="Recommendation: Experience cool breezes with possibilities of morning mist and lotus blooms in the lake, suitable for photography and nature walks.">
+                       <strong>แนะนำ:</strong> สัมผัสบรรยากาศลมเย็นสบาย อาจมีโอกาสพบสายหมอกยามเช้าและดอกบัวในบึง เหมาะสำหรับการเดินถ่ายภาพชมธรรมชาติ
                     </p>
                 </div>
             </div>
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="🌧️ ฤดูฝน (มิ.ย. - ต.ค.)" data-en="🌧️ Rainy Season (Jun - Oct)">🌧️ ฤดูฝน (มิ.ย. - ต.ค.)</h3>
-                    <p data-th="ไฮไลต์: ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์"
-                       data-en="Highlights: Full water levels, vibrant green aquatic foliage; offers a refreshing and lively natural feel.">
-                       <strong>ไฮไลต์:</strong> ปริมาณน้ำในบึงแกดำเต็มฝั่ง พืชพรรณไม้น้ำและพงหญ้าเขียวชอุ่ม ให้ความรู้สึกสดชื่นและอุดมสมบูรณ์
+                    <p data-th="แนะนำ: ชื่นชมความเขียวชอุ่มของพืชพรรณไม้น้ำและรอบบึง บรรยากาศดูสดชื่นและมีชีวิตชีวาตามธรรมชาติ"
+                       data-en="Recommendation: Enjoy the lush green aquatic vegetation around the lake, offering a refreshing natural atmosphere.">
+                       <strong>แนะนำ:</strong> ชื่นชมความเขียวชอุ่มของพืชพรรณไม้น้ำและรอบบึง บรรยากาศดูสดชื่นและมีชีวิตชีวาตามธรรมชาติ
                     </p>
                 </div>
             </div>
             <div class="card reveal" data-tilt data-tilt-max="8">
                 <div class="card-body">
                     <h3 data-th="☀️ ฤดูร้อน (มี.ค. - พ.ค.)" data-en="☀️ Summer (Mar - May)">☀️ ฤดูร้อน (มี.ค. - พ.ค.)</h3>
-                    <p data-th="ไฮไลต์: ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ"
-                       data-en="Highlights: Observe evening local daily activities with stunning golden sunsets reflecting across the water.">
-                       <strong>ไฮไลต์:</strong> ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น และแสงพระอาทิตย์ตกดินสะท้อนผิวน้ำที่สวยงามมากเป็นพิเศษ
+                    <p data-th="แนะนำ: ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น พร้อมชมแสงพระอาทิตย์ตกดินกระทบผิวน้ำช่วงเย็น"
+                       data-en="Recommendation: Observe evening local daily activities while enjoying views of the sunset reflecting on the water surface.">
+                       <strong>แนะนำ:</strong> ชมบรรยากาศวิถีชีวิตชาวบ้านยามเย็น พร้อมชมแสงพระอาทิตย์ตกดินกระทบผิวน้ำช่วงเย็น
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="weather-card reveal" style="max-width: 100%; text-align: center; background: var(--accent-light); border-left: 5px solid var(--accent); margin-top: 1.5rem;">
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);"
+               data-th="หมายเหตุ: สภาพอากาศและสภาพธรรมชาติอาจเปลี่ยนแปลงตามช่วงเวลา ผู้เยี่ยมชมควรตรวจสอบสภาพอากาศก่อนเดินทาง"
+               data-en="Note: Weather and natural conditions may change over time. Visitors should check the weather forecast before traveling.">
+               หมายเหตุ: สภาพอากาศและสภาพธรรมชาติอาจเปลี่ยนแปลงตามช่วงเวลา ผู้เยี่ยมชมควรตรวจสอบสภาพอากาศก่อนเดินทาง
+            </p>
         </div>
     </div>
 
@@ -1310,7 +1390,8 @@
                 <ul>
                     <li data-th="สถานที่ตั้ง: ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)" data-en="Location: Kae Dam Sub-district, Kae Dam District, Maha Sarakham (Behind Wat Dao Dueng)"><strong>สถานที่ตั้ง:</strong> ต.แกดำ อ.แกดำ จ.มหาสารคาม (ด้านหลังวัดดาวดึงษ์)</li>
                     <li data-th="ระยะทาง: ห่างจากตัวเมืองมหาสารคามประมาณ 25 กิโลเมตร" data-en="Distance: ~25 km from Maha Sarakham city center"><strong>ระยะทาง:</strong> ห่างจากตัวเมืองมหาสารคามประมาณ 25 กิโลเมตร</li>
-                    <li data-th="เวลาเปิด-ปิด: เปิดให้เข้าชมฟรีตลอด 24 ชั่วโมง" data-en="Hours: Open 24/7 (Free Admission)"><strong>เวลาเปิด-ปิด:</strong> เปิดให้เข้าชมฟรีตลอด 24 ชั่วโมง</li>
+                    <li data-th="เวลาเข้าชม: ข้อมูลเวลาเข้าชมควรตรวจสอบกับหน่วยงานหรือพื้นที่ก่อนเดินทาง" data-en="Visiting Hours: Visiting hours should be checked with local authorities or community before traveling."><strong>เวลาเข้าชม:</strong> ข้อมูลเวลาเข้าชมควรตรวจสอบกับหน่วยงานหรือพื้นที่ก่อนเดินทาง</li>
+                    <li data-th="ค่าเข้าชม: ไม่มีข้อมูลยืนยันเรื่องค่าธรรมเนียมเข้าชมจากแหล่งข้อมูลที่อ้างอิงในเว็บไซต์ แนะนำให้ตรวจสอบกับหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง" data-en="Admission Fee: No confirmed information regarding admission fees from sources referenced on this website. Recommending verifying with local authorities or community before traveling."><strong>ค่าเข้าชม:</strong> ไม่มีข้อมูลยืนยันเรื่องค่าธรรมเนียมเข้าชมจากแหล่งข้อมูลที่อ้างอิงในเว็บไซต์ แนะนำให้ตรวจสอบกับหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง</li>
                 </ul>
             </div>
             <div class="info-box reveal">
@@ -1336,23 +1417,56 @@
             <div class="map-container">
                 <iframe src="https://maps.google.com/maps?q=สะพานไม้แกดำ+มหาสารคาม&t=&z=16&ie=UTF8&iwloc=B&output=embed" allowfullscreen="" loading="lazy"></iframe>
             </div>
+            <div class="map-btn-wrapper">
+                <a href="https://maps.google.com/?q=สะพานไม้แกดำ+มหาสารคาม" target="_blank" class="map-btn" data-th="🗺️ เปิดตำแหน่งใน Google Maps" data-en="🗺️ Open location in Google Maps">🗺️ เปิดตำแหน่งใน Google Maps</a>
+            </div>
         </div>
     </div>
 
     <div id="page-faq" class="page-content container">
         <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
         <h2 class="section-title reveal" data-th="คำถามที่พบบ่อย (FAQ)" data-en="Frequently Asked Questions">คำถามที่พบบ่อย (FAQ)</h2>
-        <div class="faq-item reveal">
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
             <h4 data-th="❓ เสียค่าเข้าชมหรือไม่?" data-en="❓ Is there an entry fee?">❓ เสียค่าเข้าชมหรือไม่?</h4>
-            <p data-th="ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น" data-en="Answer: Free admission for all visitors without any charges.">ตอบ: เข้าชมฟรี ไม่มีค่าธรรมเนียมใดๆ ทั้งสิ้น</p>
+            <div class="faq-answer">
+                <p data-th="ตอบ: ไม่มีข้อมูลยืนยันเรื่องค่าธรรมเนียมเข้าชมจากแหล่งข้อมูลที่อ้างอิงในเว็บไซต์ แนะนำให้ตรวจสอบกับหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง" data-en="Answer: No confirmed information regarding admission fees from sources referenced on this website. Recommending verifying with local authorities or community before traveling.">ตอบ: ไม่มีข้อมูลยืนยันเรื่องค่าธรรมเนียมเข้าชมจากแหล่งข้อมูลที่อ้างอิงในเว็บไซต์ แนะนำให้ตรวจสอบกับหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง</p>
+            </div>
         </div>
-        <div class="faq-item reveal">
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
             <h4 data-th="❓ มีสถานที่จอดรถบริการหรือไม่?" data-en="❓ Is parking available?">❓ มีสถานที่จอดรถบริการหรือไม่?</h4>
-            <p data-th="ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน" data-en="Answer: Parking is conveniently available at Wat Dao Dueng and around the bridge entrance.">ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน</p>
+            <div class="faq-answer">
+                <p data-th="ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน (ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง)" data-en="Answer: Parking is available around Wat Dao Dueng and the entrance area (please verify with local authorities/community before traveling).">ตอบ: มีลานจอดรถบริการบริเวณวัดดาวดึงษ์และบริเวณรอบทางขึ้นสะพาน (ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง)</p>
+            </div>
         </div>
-        <div class="faq-item reveal">
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
             <h4 data-th="❓ มีร้านค้าหรือร้านอาหารบริการหรือไม่?" data-en="❓ Are there shops or food stalls nearby?">❓ มีร้านค้าหรือร้านอาหารบริการหรือไม่?</h4>
-            <p data-th="ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่" data-en="Answer: Local community shops near the entrance sell drinks, quick meals, and local snacks.">ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่</p>
+            <div class="faq-answer">
+                <p data-th="ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่ (ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง)" data-en="Answer: Local community shops near the entrance sell drinks and snacks (please verify with local authorities/community before traveling).">ตอบ: บริเวณทางเข้ามีร้านค้าชุมชนจำหน่ายน้ำดื่ม เครื่องดื่ม อาหารจานด่วน และของกินเล่นจากชาวบ้านในพื้นที่ (ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง)</p>
+            </div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+            <h4 data-th="❓ สะพานไม้แกดำเปิด-ปิดกี่โมง?" data-en="❓ What are the operating hours?">❓ สะพานไม้แกดำเปิด-ปิดกี่โมง?</h4>
+            <div class="faq-answer">
+                <p data-th="ตอบ: ข้อมูลเวลาเปิด-ปิดทำการ ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง" data-en="Answer: For exact opening and closing hours, please verify with local authorities/community before traveling.">ตอบ: ข้อมูลเวลาเปิด-ปิดทำการ ควรตรวจสอบข้อมูลกับพื้นที่หรือหน่วยงานที่เกี่ยวข้องก่อนเดินทาง</p>
+            </div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+            <h4 data-th="❓ ควรเตรียมตัวอย่างไรในการเดินชมสะพานไม้?" data-en="❓ How should visitors prepare for walking on the bridge?">❓ ควรเตรียมตัวอย่างไรในการเดินชมสะพานไม้?</h4>
+            <div class="faq-answer">
+                <p data-th="ตอบ: ควรสวมรองเท้าที่เดินสบาย ระมัดระวังช่องร่องไม้โบราณ พกร่มหรือหมวกกันแดดในยามกลางวัน และช่วยกันรักษาความสะอาดไม่ทิ้งขยะลงแหล่งน้ำ" data-en="Answer: Wear comfortable shoes, be mindful of gaps between wooden planks, bring an umbrella or hat for daytime visits, and avoid littering.">ตอบ: ควรสวมรองเท้าที่เดินสบาย ระมัดระวังช่องร่องไม้โบราณ พกร่มหรือหมวกกันแดดในยามกลางวัน และช่วยกันรักษาความสะอาดไม่ทิ้งขยะลงแหล่งน้ำ</p>
+            </div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+            <h4 data-th="❓ สามารถนำสัตว์เลี้ยงเข้าชมได้หรือไม่?" data-en="❓ Are pets allowed?">❓ สามารถนำสัตว์เลี้ยงเข้าชมได้หรือไม่?</h4>
+            <div class="faq-answer">
+                <p data-th="ตอบ: ยังไม่มีข้อมูลที่ยืนยันชัดเจนเกี่ยวกับการนำสัตว์เลี้ยงเข้าพื้นที่ แนะนำให้สอบถามหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง และหากนำสัตว์เลี้ยงไป ควรดูแลอย่างใกล้ชิดและรักษาความสะอาดของพื้นที่" data-en="Answer: There is currently no clear confirmed information regarding bringing pets into the area. It is recommended to consult local authorities or the community prior to traveling, and if bringing pets, keep them under close supervision and maintain cleanliness.">ตอบ: ยังไม่มีข้อมูลที่ยืนยันชัดเจนเกี่ยวกับการนำสัตว์เลี้ยงเข้าพื้นที่ แนะนำให้สอบถามหน่วยงานท้องถิ่นหรือชุมชนก่อนเดินทาง และหากนำสัตว์เลี้ยงไป ควรดูแลอย่างใกล้ชิดและรักษาความสะอาดของพื้นที่</p>
+            </div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+            <h4 data-th="❓ ช่วงเวลาไหนเหมาะแก่การถ่ายภาพมากที่สุด?" data-en="❓ When is the best time for photography?">❓ ช่วงเวลาไหนเหมาะแก่การถ่ายภาพมากที่สุด?</h4>
+            <div class="faq-answer">
+                <p data-th="ตอบ: ช่วงเช้าตรู่ (06.00 – 08.30 น.) จะได้สัมผัสบรรยากาศหมอกและสายน้ำสดชื่น และช่วงเย็น (16.30 – 18.30 น.) สำหรับชมแสงพระอาทิตย์ตกดิน" data-en="Answer: Early morning (06:00 – 08:30) for refreshing mist views, and late afternoon (16:30 – 18:30) for golden hour and sunset photos.">ตอบ: ช่วงเช้าตรู่ (06.00 – 08.30 น.) จะได้สัมผัสบรรยากาศหมอกและสายน้ำสดชื่น และช่วงเย็น (16.30 – 18.30 น.) สำหรับชมแสงพระอาทิตย์ตกดิน</p>
+            </div>
         </div>
     </div>
 
@@ -1360,6 +1474,19 @@
     <div id="page-references" class="page-content container">
         <a class="back-to-home" onclick="switchPage('home')" data-th="← กลับหน้าแรก" data-en="← Back to Home">← กลับหน้าแรก</a>
         <h2 class="section-title reveal" data-th="แหล่งอ้างอิงและเครดิต" data-en="References & Credits">แหล่งอ้างอิงและเครดิต</h2>
+        
+        <!-- กล่องหมายเหตุวัตถุประสงค์เพื่อการศึกษา -->
+        <div class="weather-card reveal" style="max-width: 100%; text-align: left; background: var(--accent-light); border-left: 5px solid var(--accent); margin-top: 0; margin-bottom: 2rem;">
+            <h4 style="display: flex; align-items: center; gap: 8px;" data-th="ℹ️ วัตถุประสงค์การจัดทำ" data-en="ℹ️ Educational Purpose Statement">
+                ℹ️ วัตถุประสงค์การจัดทำ
+            </h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main);" 
+               data-th="เนื้อหาและสื่อบรรดามีบนเว็บไซต์นี้เป็นการรวบรวมและเรียบเรียงขึ้นเพื่อวัตถุประสงค์ทางการศึกษา เผยแพร่ความรู้ และส่งเสริมการท่องเที่ยวเชิงวัฒนธรรมของสะพานไม้แกดำ จังหวัดมหาสารคาม โดยไม่มีวัตถุประสงค์เพื่อการแสวงหาผลกำไรทางการค้า"
+               data-en="All content and media on this website have been compiled and arranged for educational purposes, knowledge dissemination, and cultural tourism promotion of Kae Dam Wooden Bridge, Maha Sarakham Province, with non-commercial objectives.">
+               เนื้อหาและสื่อบรรดามีบนเว็บไซต์นี้เป็นการรวบรวมและเรียบเรียงขึ้นเพื่อวัตถุประสงค์ทางการศึกษา เผยแพร่ความรู้ และส่งเสริมการท่องเที่ยวเชิงวัฒนธรรมของสะพานไม้แกดำ จังหวัดมหาสารคาม โดยไม่มีวัตถุประสงค์เพื่อการแสวงหาผลกำไรทางการค้า
+            </p>
+        </div>
+
         <div class="history-box reveal">
             <h3 data-th="📚 แหล่งอ้างอิงข้อมูล" data-en="📚 Data Sources & References">📚 แหล่งอ้างอิงข้อมูล</h3>
             <p data-th="เว็บไซต์นี้รวบรวมและเรียบเรียงข้อมูลเกี่ยวกับสะพานไม้แกดำและแหล่งท่องเที่ยวจังหวัดมหาสารคาม โดยอ้างอิงข้อมูลจากหน่วยงานภาครัฐ ดังนี้"
@@ -1368,16 +1495,39 @@
             </p>
             <ul class="ref-list">
                 <li>
-                    สำนักงานจังหวัดมหาสารคาม. <strong>ข้อมูลแหล่งท่องเที่ยวจังหวัดมหาสารคาม.</strong><br>
+                    <span data-th="สำนักงานจังหวัดมหาสารคาม." data-en="Maha Sarakham Provincial Office.">สำนักงานจังหวัดมหาสารคาม.</span> 
+                    <strong data-th="ข้อมูลแหล่งท่องเที่ยวจังหวัดมหาสารคาม." data-en="Maha Sarakham Tourist Attraction Information.">ข้อมูลแหล่งท่องเที่ยวจังหวัดมหาสารคาม.</strong><br>
                     <a href="https://www.mahasarakham.go.th/new/travel_top/detail/2/data.html" target="_blank" style="color: var(--primary); text-decoration: underline; word-break: break-all;">https://www.mahasarakham.go.th/new/travel_top/detail/2/data.html</a>
                 </li>
                 <li>
-                    สำนักงานประชาสัมพันธ์จังหวัดมหาสารคาม. <strong>ข้อมูลแหล่งท่องเที่ยวและสถานที่สำคัญในจังหวัดมหาสารคาม.</strong><br>
+                    <span data-th="สำนักงานประชาสัมพันธ์จังหวัดมหาสารคาม." data-en="Maha Sarakham Provincial Public Relations Office.">สำนักงานประชาสัมพันธ์จังหวัดมหาสารคาม.</span> 
+                    <strong data-th="ข้อมูลแหล่งท่องเที่ยวและสถานที่สำคัญในจังหวัดมหาสารคาม." data-en="Tourist Attractions and Important Landmarks in Maha Sarakham Province.">ข้อมูลแหล่งท่องเที่ยวและสถานที่สำคัญในจังหวัดมหาสารคาม.</strong><br>
                     <a href="https://mahasarakham.prd.go.th/th/content/category/detail/id/118/iid/11165" target="_blank" style="color: var(--primary); text-decoration: underline; word-break: break-all;">https://mahasarakham.prd.go.th/th/content/category/detail/id/118/iid/11165</a>
                 </li>
             </ul>
-            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่สืบค้น: 1 กันยายน 2569" data-en="Access Date: September 1, 2026">
-                📅 <strong>วันที่สืบค้น:</strong> 1 กันยายน 2569
+
+            <h3 style="margin-top: 2rem;" data-th="📷 เครดิตภาพและสื่อ" data-en="📷 Image & Media Credits">📷 เครดิตภาพและสื่อ</h3>
+            <p data-th="การใช้งานภาพถ่าย สื่อประกอบ และองค์ประกอบกราฟิกบนเว็บไซต์ มีแหล่งที่มาดังนี้:"
+               data-en="Image, media, and graphic element usage on this website is credited as follows:">
+               การใช้งานภาพถ่าย สื่อประกอบ และองค์ประกอบกราฟิกบนเว็บไซต์ มีแหล่งที่มาดังนี้:
+            </p>
+            <ul class="ref-list">
+                <li>
+                    <strong data-th="ภาพถ่ายบรรยากาศและภาพสไลด์ประกอบ:" data-en="Atmosphere & Slide Photos:">ภาพถ่ายบรรยากาศและภาพสไลด์ประกอบ:</strong> 
+                    <span data-th="บันทึกและถ่ายภาพโดย นางสาว สุทธิดา จำปาทิ (ผู้จัดทำเว็บไซต์)" data-en="Captured and photographed by Suttida Jampati (Website Developer)">บันทึกและถ่ายภาพโดย นางสาว สุทธิดา จำปาทิ (ผู้จัดทำเว็บไซต์)</span>
+                </li>
+                <li>
+                    <strong data-th="ภาพมาสคอตยินดีต้อนรับ (welcome-frog.png):" data-en="Welcome Mascot Image (welcome-frog.png):">ภาพมาสคอตยินดีต้อนรับ (welcome-frog.png):</strong> 
+                    <span data-th="welcome-frog.png — ภาพมาสคอตเด็กผู้หญิงชุดกบ สร้างด้วย Generative AI เพื่อใช้เป็นกราฟิกประกอบหน้า Welcome ของเว็บไซต์ โดยผู้จัดทำเป็นผู้กำหนดแนวคิดและนำมาปรับใช้กับเว็บไซต์" data-en="welcome-frog.png — A frog costume girl mascot image created with Generative AI for use as welcome page graphic, with concepts defined and applied by the website developer.">welcome-frog.png — ภาพมาสคอตเด็กผู้หญิงชุดกบ สร้างด้วย Generative AI เพื่อใช้เป็นกราฟิกประกอบหน้า Welcome ของเว็บไซต์ โดยผู้จัดทำเป็นผู้กำหนดแนวคิดและนำมาปรับใช้กับเว็บไซต์</span>
+                </li>
+                <li>
+                    <strong data-th="แผนที่ปฏิสัมพันธ์ (Interactive Map):" data-en="Interactive Map:">แผนที่ปฏิสัมพันธ์ (Interactive Map):</strong> 
+                    <span data-th="ให้บริการระบบแผนที่นำทางโดย Google Maps API / Embed Link" data-en="Provided via Google Maps API / Embed Link">ให้บริการระบบแผนที่นำทางโดย Google Maps API / Embed Link</span>
+                </li>
+            </ul>
+
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่สืบค้น: 12 กันยายน 2569" data-en="Access Date: September 12, 2026">
+                📅 <strong>วันที่สืบค้น:</strong> 12 กันยายน 2569
             </p>
         </div>
     </div>
@@ -1403,8 +1553,8 @@
                data-en="If site design updates or feature additions occur in the future that involve collecting user data, this privacy policy will be updated accordingly to reflect actual operations.">
                หากมีการปรับปรุงรูปแบบหรือเพิ่มฟังก์ชันการทำงานของเว็บไซต์ในอนาคต ซึ่งอาจเกี่ยวข้องกับการเก็บรวบรวมข้อมูลผู้ใช้งาน นโยบายความเป็นส่วนตัวนี้จะได้รับการปรับปรุงให้สอดคล้องกับการใช้งานจริงของเว็บไซต์ต่อไป
             </p>
-            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่ปรับปรุงล่าสุด: 1 กันยายน 2569" data-en="Last Updated: September 1, 2026">
-                📅 <strong>วันที่ปรับปรุงล่าสุด:</strong> 1 กันยายน 2569
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="อัปเดตล่าสุด: 12 กันยายน 2569" data-en="Last Updated: September 12, 2026">
+                📅 <strong>อัปเดตล่าสุด:</strong> 12 กันยายน 2569
             </p>
         </div>
     </div>
@@ -1434,8 +1584,8 @@
                data-en="Use of AI in site creation: The creator used ChatGPT (OpenAI) and Gemini (Google AI) as assisting tools for brainstorming, content editing, and code development. The creator inspected, edited, and made decisions regarding all content prior to publication.">
                การใช้ AI ในการจัดทำเว็บไซต์: ผู้จัดทำใช้ <a href="https://chatgpt.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">ChatGPT (OpenAI)</a> และ <a href="https://gemini.google.com/" target="_blank" style="color: var(--primary); text-decoration: underline;">Gemini (Google AI)</a> เป็นเครื่องมือช่วยด้านการคิดแนวทาง การเรียบเรียงเนื้อหา และการพัฒนารหัสเว็บไซต์ โดยผู้จัดทำเป็นผู้ตรวจสอบ ปรับแก้ และตัดสินใจเกี่ยวกับเนื้อหาก่อนเผยแพร่
             </p>
-            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="วันที่ปรับปรุงล่าสุด: 1 กันยายน 2569" data-en="Last Updated: September 1, 2026">
-                📅 <strong>วันที่ปรับปรุงล่าสุด:</strong> 1 กันยายน 2569
+            <p style="margin-top: 1.5rem; font-weight: 500; border-top: 1px dashed rgba(0,0,0,0.15); padding-top: 0.8rem;" data-th="อัปเดตล่าสุด: 12 กันยายน 2569" data-en="Last Updated: September 12, 2026">
+                📅 <strong>อัปเดตล่าสุด:</strong> 12 กันยายน 2569
             </p>
         </div>
     </div>
@@ -1454,7 +1604,7 @@
 
             <div class="footer-col">
                 <h4 data-th="การเผยแพร่" data-en="Publishing">การเผยแพร่</h4>
-                <p><a href="https://github.com/" target="_blank" style="color: var(--footer-text-muted); text-decoration: underline;" data-th="เว็บไซต์เผยแพร่ผ่าน GitHub / GitHub Pages" data-en="Website published via GitHub / GitHub Pages">เว็บไซต์เผยแพร่ผ่าน GitHub / GitHub Pages</a></p>
+                <p><a href="https://github.com/" target="_blank" style="color: var(--footer-text-muted); text-decoration: underline;" data-th="ช่องทางสำหรับเผยแพร่: GitHub Pages" data-en="Publishing Channel: GitHub Pages">ช่องทางสำหรับเผยแพร่: GitHub Pages</a></p>
                 <div class="footer-links" style="margin-top: 1rem; text-align: left;">
                     <p style="margin-bottom: 0.3rem;"><a onclick="switchPage('references')" data-th="แหล่งอ้างอิงและเครดิต" data-en="References & Credits">แหล่งอ้างอิงและเครดิต</a></p>
                     <p style="margin-bottom: 0.3rem;"><a onclick="switchPage('privacy')" data-th="นโยบายความเป็นส่วนตัว" data-en="Privacy Policy">นโยบายความเป็นส่วนตัว</a></p>
@@ -1541,6 +1691,11 @@
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setTimeout(initScrollReveal, 100);
+        }
+
+        // Accordion Toggle for FAQ
+        function toggleFaq(element) {
+            element.classList.toggle('active');
         }
 
         // Lightbox Modal
